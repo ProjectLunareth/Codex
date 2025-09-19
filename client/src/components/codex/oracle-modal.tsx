@@ -105,7 +105,7 @@ export default function OracleModal({ isOpen, onClose }: OracleModalProps) {
                 <SelectValue placeholder="General wisdom" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">General wisdom</SelectItem>
+                <SelectItem value="general">General wisdom</SelectItem>
                 <SelectItem value="cosmogenesis">Cosmogenesis & Creation</SelectItem>
                 <SelectItem value="psychogenesis">Soul & Consciousness</SelectItem>
                 <SelectItem value="mystagogy">Spiritual Return</SelectItem>
