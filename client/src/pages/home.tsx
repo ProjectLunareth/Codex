@@ -1,0 +1,87 @@
+import { useState } from "react";
+import Sidebar from "@/components/layout/sidebar";
+import MainContent from "@/components/layout/main-content";
+import EntryModal from "@/components/codex/entry-modal";
+import OracleModal from "@/components/codex/oracle-modal";
+import { useCodex } from "@/hooks/use-codex";
+import { type CodexEntryWithBookmark } from "@shared/schema";
+
+export default function Home() {
+  const [selectedEntry, setSelectedEntry] = useState<CodexEntryWithBookmark | null>(null);
+  const [isOracleOpen, setIsOracleOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [sortBy, setSortBy] = useState<"title" | "category" | "size" | "date">("title");
+
+  const { filteredEntries, isLoading } = useCodex({
+    searchQuery,
+    category: selectedCategory,
+    filters: selectedFilters,
+    sortBy,
+  });
+
+  const handleEntryClick = (entry: CodexEntryWithBookmark) => {
+    setSelectedEntry(entry);
+  };
+
+  const closeEntryModal = () => {
+    setSelectedEntry(null);
+  };
+
+  const openOracle = () => {
+    setIsOracleOpen(true);
+  };
+
+  const closeOracle = () => {
+    setIsOracleOpen(false);
+  };
+
+  return (
+    <div className="flex h-screen overflow-hidden bg-background">
+      <Sidebar
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+        selectedFilters={selectedFilters}
+        onFiltersChange={setSelectedFilters}
+        onOracleClick={openOracle}
+        entryCounts={{
+          cosmogenesis: filteredEntries.filter(e => e.category === "cosmogenesis").length,
+          psychogenesis: filteredEntries.filter(e => e.category === "psychogenesis").length,
+          mystagogy: filteredEntries.filter(e => e.category === "mystagogy").length,
+          "climbing-systems": filteredEntries.filter(e => e.category === "climbing-systems").length,
+          "initiation-rites": filteredEntries.filter(e => e.category === "initiation-rites").length,
+          "archetypal-structures": filteredEntries.filter(e => e.category === "archetypal-structures").length,
+          "psychic-technologies": filteredEntries.filter(e => e.category === "psychic-technologies").length,
+        }}
+      />
+
+      <MainContent
+        entries={filteredEntries}
+        isLoading={isLoading}
+        selectedCategory={selectedCategory}
+        viewMode={viewMode}
+        onViewModeChange={setViewMode}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+        onEntryClick={handleEntryClick}
+      />
+
+      {selectedEntry && (
+        <EntryModal
+          entry={selectedEntry}
+          isOpen={!!selectedEntry}
+          onClose={closeEntryModal}
+        />
+      )}
+
+      <OracleModal
+        isOpen={isOracleOpen}
+        onClose={closeOracle}
+      />
+    </div>
+  );
+}

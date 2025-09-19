@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(30, 20%, 4%);
+  --foreground: hsl(30, 10%, 85%);
+  --card: hsl(30, 15%, 6%);
+  --card-foreground: hsl(30, 10%, 85%);
+  --popover: hsl(30, 15%, 8%);
+  --popover-foreground: hsl(30, 10%, 85%);
+  --primary: hsl(45, 84%, 60%);
+  --primary-foreground: hsl(30, 20%, 4%);
+  --secondary: hsl(30, 15%, 25%);
+  --secondary-foreground: hsl(30, 10%, 85%);
+  --muted: hsl(30, 15%, 15%);
+  --muted-foreground: hsl(30, 10%, 60%);
+  --accent: hsl(45, 84%, 60%);
+  --accent-foreground: hsl(30, 20%, 4%);
+  --destructive: hsl(0, 62%, 50%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(45, 84%, 60%, 0.2);
+  --input: hsl(30, 15%, 15%);
+  --ring: hsl(45, 84%, 60%);
+  --chart-1: hsl(45, 84%, 60%);
+  --chart-2: hsl(159.7826, 100%, 36.0784%);
+  --chart-3: hsl(42.0290, 92.8251%, 56.2745%);
+  --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
+  --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
+  --sidebar: hsl(30, 15%, 6%);
+  --sidebar-foreground: hsl(30, 10%, 85%);
+  --sidebar-primary: hsl(45, 84%, 60%);
+  --sidebar-primary-foreground: hsl(30, 20%, 4%);
+  --sidebar-accent: hsl(45, 84%, 60%);
+  --sidebar-accent-foreground: hsl(30, 20%, 4%);
+  --sidebar-border: hsl(45, 84%, 60%, 0.2);
+  --sidebar-ring: hsl(45, 84%, 60%);
+  --font-sans: 'EB Garamond', serif;
+  --font-serif: 'EB Garamond', serif;
+  --font-mono: 'Courier New', monospace;
+  --radius: 0.75rem;
+  --shadow-2xs: 0px 2px 0px 0px hsl(45, 84%, 60%, 0.1);
+  --shadow-xs: 0px 2px 0px 0px hsl(45, 84%, 60%, 0.1);
+  --shadow-sm: 0px 2px 0px 0px hsl(45, 84%, 60%, 0.1), 0px 1px 2px -1px hsl(45, 84%, 60%, 0.1);
+  --shadow: 0px 2px 0px 0px hsl(45, 84%, 60%, 0.1), 0px 1px 2px -1px hsl(45, 84%, 60%, 0.1);
+  --shadow-md: 0px 2px 0px 0px hsl(45, 84%, 60%, 0.1), 0px 2px 4px -1px hsl(45, 84%, 60%, 0.1);
+  --shadow-lg: 0px 2px 0px 0px hsl(45, 84%, 60%, 0.1), 0px 4px 6px -1px hsl(45, 84%, 60%, 0.1);
+  --shadow-xl: 0px 2px 0px 0px hsl(45, 84%, 60%, 0.1), 0px 8px 10px -1px hsl(45, 84%, 60%, 0.1);
+  --shadow-2xl: 0px 2px 0px 0px hsl(45, 84%, 60%, 0.1);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: hsl(30, 20%, 4%);
+  --foreground: hsl(30, 10%, 85%);
+  --card: hsl(30, 15%, 6%);
+  --card-foreground: hsl(30, 10%, 85%);
+  --popover: hsl(30, 15%, 8%);
+  --popover-foreground: hsl(30, 10%, 85%);
+  --primary: hsl(45, 84%, 60%);
+  --primary-foreground: hsl(30, 20%, 4%);
+  --secondary: hsl(30, 15%, 25%);
+  --secondary-foreground: hsl(30, 10%, 85%);
+  --muted: hsl(30, 15%, 15%);
+  --muted-foreground: hsl(30, 10%, 60%);
+  --accent: hsl(45, 84%, 60%);
+  --accent-foreground: hsl(30, 20%, 4%);
+  --destructive: hsl(0, 62%, 50%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(45, 84%, 60%, 0.2);
+  --input: hsl(30, 15%, 15%);
+  --ring: hsl(45, 84%, 60%);
+  --sidebar: hsl(30, 15%, 6%);
+  --sidebar-foreground: hsl(30, 10%, 85%);
+  --sidebar-primary: hsl(45, 84%, 60%);
+  --sidebar-primary-foreground: hsl(30, 20%, 4%);
+  --sidebar-accent: hsl(45, 84%, 60%);
+  --sidebar-accent-foreground: hsl(30, 20%, 4%);
+  --sidebar-border: hsl(45, 84%, 60%, 0.2);
+  --sidebar-ring: hsl(45, 84%, 60%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    background-image: radial-gradient(circle at 25% 25%, hsl(45, 84%, 60%, 0.1), transparent 50%),
+                      radial-gradient(circle at 75% 75%, hsl(45, 84%, 60%, 0.05), transparent 50%);
+    font-family: 'EB Garamond', serif;
+  }
+}
+
+/* Custom utility classes */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-garamond {
+  font-family: 'EB Garamond', serif;
+}
+
+.mystical-border {
+  border: 1px solid var(--border);
+  background: hsl(30, 15%, 6%, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px hsl(45, 84%, 60%, 0.1);
+}
+
+.mystical-border:hover {
+  border-color: hsl(45, 84%, 60%, 0.4);
+  box-shadow: 0 0 30px hsl(45, 84%, 60%, 0.2);
+}
+
+.mystical-glow {
+  box-shadow: 0 0 40px hsl(45, 84%, 60%, 0.15);
+}
+
+.search-active {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px hsl(45, 84%, 60%, 0.2);
+}
+
+.sidebar-nav {
+  background: hsl(30, 15%, 6%, 0.9);
+  backdrop-filter: blur(15px);
+  border-right: 1px solid var(--border);
+}
+
+.entry-card {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.entry-card:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.category-badge {
+  background: linear-gradient(135deg, hsl(45, 84%, 60%, 0.2), hsl(45, 84%, 60%, 0.1));
+  border: 1px solid hsl(45, 84%, 60%, 0.3);
+}
+
+.bookmark-star {
+  color: hsl(45, 84%, 60%);
+  text-shadow: 0 0 10px hsl(45, 84%, 60%, 0.5);
+}
+
+.cross-ref-link {
+  color: hsl(45, 84%, 70%);
+  text-decoration: underline;
+  text-decoration-color: hsl(45, 84%, 60%, 0.5);
+}
+
+.cross-ref-link:hover {
+  color: hsl(45, 84%, 80%);
+  text-decoration-color: hsl(45, 84%, 60%);
+}
+
+.modal-backdrop {
+  background: hsl(0, 0%, 0%, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.oracle-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px hsl(45, 84%, 60%, 0.3); }
+  50% { box-shadow: 0 0 40px hsl(45, 84%, 60%, 0.5); }
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, hsl(45, 84%, 60%, 0.3), transparent);
+}
+
+.loading-spinner {
+  border: 3px solid hsl(45, 84%, 60%, 0.2);
+  border-left: 3px solid hsl(45, 84%, 60%);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Prose styling for content */
+.prose-amber {
+  color: var(--foreground);
+}
+
+.prose-amber h1,
+.prose-amber h2,
+.prose-amber h3,
+.prose-amber h4 {
+  color: var(--primary);
+  font-family: 'Cinzel', serif;
+}
+
+.prose-amber strong {
+  color: var(--primary);
+}
+
+.prose-amber ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.prose-amber li {
+  margin: 0.5rem 0;
+}
+
+.prose-amber p {
+  margin: 1rem 0;
+  line-height: 1.7;
+}
