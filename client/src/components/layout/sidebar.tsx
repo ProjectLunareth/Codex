@@ -1,7 +1,8 @@
-import { Search, X, Eye, CircleDot, Lightbulb, Bookmark, Menu, ChevronLeft } from "lucide-react";
+import { Search, X, Eye, CircleDot, Lightbulb, Bookmark, Menu, ChevronLeft, BookOpen } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "wouter";
 
 interface SidebarProps {
   searchQuery: string;
@@ -190,8 +191,20 @@ export default function Sidebar({
       </nav>
       )}
 
-      {/* Oracle Consultation Button */}
-      <div className="mt-auto pt-6">
+      {/* Action Buttons */}
+      <div className="mt-auto pt-6 space-y-3">
+        <Link href="/grimoire">
+          <Button
+            className={`mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border ${
+              isCollapsed ? 'w-12 h-12 p-0' : 'w-full'
+            }`}
+            data-testid="button-grimoire"
+          >
+            <BookOpen className="h-4 w-4" />
+            {!isCollapsed && <span className="ml-2">Personal Grimoire</span>}
+          </Button>
+        </Link>
+        
         <Button
           onClick={onOracleClick}
           className={`mystical-border oracle-glow font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border ${

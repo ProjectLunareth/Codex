@@ -1,4 +1,4 @@
-import { type CodexEntry, type Bookmark, type OracleConsultation, type InsertCodexEntry, type InsertBookmark, type InsertOracleConsultation, type CodexEntryWithBookmark } from "@shared/schema";
+import { type CodexEntry, type Bookmark, type OracleConsultation, type GrimoireEntry, type InsertCodexEntry, type InsertBookmark, type InsertOracleConsultation, type InsertGrimoireEntry, type CodexEntryWithBookmark } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -18,17 +18,26 @@ export interface IStorage {
   // Oracle consultations
   createOracleConsultation(consultation: InsertOracleConsultation): Promise<OracleConsultation>;
   getOracleConsultations(): Promise<OracleConsultation[]>;
+  
+  // Grimoire entries
+  getGrimoireEntries(): Promise<GrimoireEntry[]>;
+  getGrimoireEntry(id: string): Promise<GrimoireEntry | undefined>;
+  createGrimoireEntry(entry: InsertGrimoireEntry): Promise<GrimoireEntry>;
+  updateGrimoireEntry(id: string, updates: Partial<InsertGrimoireEntry>): Promise<GrimoireEntry | undefined>;
+  deleteGrimoireEntry(id: string): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
   private codexEntries: Map<string, CodexEntry>;
   private bookmarks: Map<string, Bookmark>;
   private oracleConsultations: Map<string, OracleConsultation>;
+  private grimoireEntries: Map<string, GrimoireEntry>;
 
   constructor() {
     this.codexEntries = new Map();
     this.bookmarks = new Map();
     this.oracleConsultations = new Map();
+    this.grimoireEntries = new Map();
   }
 
   async getCodexEntries(): Promise<CodexEntryWithBookmark[]> {
@@ -53,6 +62,7 @@ export class MemStorage implements IStorage {
       id: insertEntry.id || randomUUID(),
       subcategory: insertEntry.subcategory || null,
       keyTerms: insertEntry.keyTerms ? [...insertEntry.keyTerms] : null,
+      keyChunks: [...insertEntry.keyChunks],
     };
     this.codexEntries.set(entry.id, entry);
     return entry;
@@ -144,6 +154,47 @@ export class MemStorage implements IStorage {
   async getOracleConsultations(): Promise<OracleConsultation[]> {
     return Array.from(this.oracleConsultations.values())
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getGrimoireEntries(): Promise<GrimoireEntry[]> {
+    return Array.from(this.grimoireEntries.values())
+      .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+  }
+
+  async getGrimoireEntry(id: string): Promise<GrimoireEntry | undefined> {
+    return this.grimoireEntries.get(id);
+  }
+
+  async createGrimoireEntry(insertEntry: InsertGrimoireEntry): Promise<GrimoireEntry> {
+    const entry: GrimoireEntry = {
+      ...insertEntry,
+      id: randomUUID(),
+      category: insertEntry.category || "personal-writing",
+      tags: insertEntry.tags ? [...insertEntry.tags] : [],
+      isPrivate: insertEntry.isPrivate ?? true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.grimoireEntries.set(entry.id, entry);
+    return entry;
+  }
+
+  async updateGrimoireEntry(id: string, updates: Partial<InsertGrimoireEntry>): Promise<GrimoireEntry | undefined> {
+    const existing = this.grimoireEntries.get(id);
+    if (!existing) return undefined;
+    
+    const updated: GrimoireEntry = {
+      ...existing,
+      ...updates,
+      tags: updates.tags ? [...updates.tags] : existing.tags,
+      updatedAt: new Date(),
+    };
+    this.grimoireEntries.set(id, updated);
+    return updated;
+  }
+
+  async deleteGrimoireEntry(id: string): Promise<boolean> {
+    return this.grimoireEntries.delete(id);
   }
 }
 

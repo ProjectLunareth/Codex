@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { codexService } from "./services/codex";
 import { consultOracle } from "./services/openai";
-import { insertBookmarkSchema, insertOracleConsultationSchema, type OracleRequest, type OracleResponse } from "@shared/schema";
+import { insertBookmarkSchema, insertOracleConsultationSchema, insertGrimoireEntrySchema, type OracleRequest, type OracleResponse } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -164,6 +164,78 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching oracle history:", error);
       res.status(500).json({ message: "Failed to fetch oracle history" });
+    }
+  });
+
+  // Get all grimoire entries
+  app.get("/api/grimoire/entries", async (req, res) => {
+    try {
+      const entries = await storage.getGrimoireEntries();
+      res.json(entries);
+    } catch (error) {
+      console.error("Error fetching grimoire entries:", error);
+      res.status(500).json({ message: "Failed to fetch grimoire entries" });
+    }
+  });
+
+  // Get single grimoire entry
+  app.get("/api/grimoire/entries/:id", async (req, res) => {
+    try {
+      const entry = await storage.getGrimoireEntry(req.params.id);
+      if (!entry) {
+        return res.status(404).json({ message: "Grimoire entry not found" });
+      }
+      res.json(entry);
+    } catch (error) {
+      console.error("Error fetching grimoire entry:", error);
+      res.status(500).json({ message: "Failed to fetch grimoire entry" });
+    }
+  });
+
+  // Create new grimoire entry
+  app.post("/api/grimoire/entries", async (req, res) => {
+    try {
+      const validated = insertGrimoireEntrySchema.parse(req.body);
+      const entry = await storage.createGrimoireEntry(validated);
+      res.status(201).json(entry);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      console.error("Error creating grimoire entry:", error);
+      res.status(500).json({ message: "Failed to create grimoire entry" });
+    }
+  });
+
+  // Update grimoire entry
+  app.put("/api/grimoire/entries/:id", async (req, res) => {
+    try {
+      const validated = insertGrimoireEntrySchema.partial().parse(req.body);
+      const entry = await storage.updateGrimoireEntry(req.params.id, validated);
+      if (!entry) {
+        return res.status(404).json({ message: "Grimoire entry not found" });
+      }
+      res.json(entry);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      console.error("Error updating grimoire entry:", error);
+      res.status(500).json({ message: "Failed to update grimoire entry" });
+    }
+  });
+
+  // Delete grimoire entry
+  app.delete("/api/grimoire/entries/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteGrimoireEntry(req.params.id);
+      if (!success) {
+        return res.status(404).json({ message: "Grimoire entry not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting grimoire entry:", error);
+      res.status(500).json({ message: "Failed to delete grimoire entry" });
     }
   });
 
