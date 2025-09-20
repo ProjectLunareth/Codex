@@ -1,0 +1,63 @@
+{
+  "status": "FAILED",
+  "timestamp": "2025-09-20T07:43:26.335782",
+  "api_testing_enabled": true,
+  "tests": {
+    "passed": 3,
+    "total": 10,
+    "success_rate": 30.0,
+    "results": {
+      "API Health Check": {
+        "success": true,
+        "message": "API health check passed",
+        "duration": 0.5272667407989502
+      },
+      "Oracle Consultation": {
+        "success": false,
+        "message": "Oracle consultation failed: Oracle consultation failed: \ud83c\udf19 The cosmic energies have disrupted the connection (Status: 500) - The Oracle is currently in deep meditation. Please try again later.",
+        "duration": 3.312224864959717
+      },
+      "Sigil Generation": {
+        "success": false,
+        "message": "Sigil generation failed: Sigil generation failed: \ud83c\udf19 The cosmic energies have disrupted the connection (Status: 500) - The mystical energies are currently unstable. Please try again later.",
+        "duration": 0.7050039768218994
+      },
+      "Sonic Echo Creation": {
+        "success": false,
+        "message": "Sonic echo creation failed: \ud83c\udf19 The cosmic energies have disrupted the connection (Status: 500) - Sonic echo generation failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+        "duration": 3.3697211742401123
+      },
+      "Collection Export": {
+        "success": false,
+        "message": "Collection export failed: 4 validation errors for CodexEntryWithBookmark\noriginal_size\n  Field required [type=missing, input_value={'id': '1', 'filename': '... Great Chain of Being']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nprocessed_date\n  Field required [type=missing, input_value={'id': '1', 'filename': '... Great Chain of Being']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nkey_chunks\n  Field required [type=missing, input_value={'id': '1', 'filename': '... Great Chain of Being']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nfull_text\n  Field required [type=missing, input_value={'id': '1', 'filename': '... Great Chain of Being']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing",
+        "duration": 0.03791499137878418
+      },
+      "Bridge Status": {
+        "success": false,
+        "message": "Bridge status indicates unhealthy state",
+        "duration": 0.04442596435546875
+      },
+      "Lunareth Sync": {
+        "success": false,
+        "message": "Lunareth synchronization failed: 'LunarethSynchronizer' object has no attribute 'PHI'",
+        "duration": 0.21509957313537598
+      },
+      "Sacred Geometry": {
+        "success": true,
+        "message": "Sacred geometry successful: Golden Spiral, Vesica Piscis, Sacred Mandala",
+        "duration": 0.6504738330841064
+      },
+      "Configuration Mgmt": {
+        "success": true,
+        "message": "Configuration management successful: Session tracking works",
+        "duration": 0.002708911895751953
+      },
+      "Complete Workflow": {
+        "success": false,
+        "message": "Complete workflow failed: 'LunarethSynchronizer' object has no attribute 'PHI'",
+        "duration": 0.00035881996154785156
+      }
+    }
+  },
+  "overall_success": false
+}

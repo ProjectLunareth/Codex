@@ -19,17 +19,17 @@ class CodexEntry(BaseModel):
     filename: str
     type: str
     size: int
-    originalSize: int = Field(alias="original_size")
-    processedDate: datetime = Field(alias="processed_date")
+    originalSize: Optional[int] = Field(alias="original_size", default=None)
+    processedDate: Optional[datetime] = Field(alias="processed_date", default=None)
     summary: str
-    keyChunks: List[str] = Field(alias="key_chunks")
-    fullText: str = Field(alias="full_text")
+    keyChunks: Optional[List[str]] = Field(alias="key_chunks", default=None)
+    fullText: Optional[str] = Field(alias="full_text", default=None)
     category: str
     subcategory: Optional[str] = None
     keyTerms: Optional[List[str]] = Field(alias="key_terms", default=None)
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 class Bookmark(BaseModel):
@@ -42,7 +42,7 @@ class Bookmark(BaseModel):
     updatedAt: datetime = Field(alias="updated_at")
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 class CodexEntryWithBookmark(CodexEntry):
@@ -59,7 +59,7 @@ class OracleConsultation(BaseModel):
     createdAt: datetime = Field(alias="created_at")
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 class GrimoireEntry(BaseModel):
@@ -74,7 +74,7 @@ class GrimoireEntry(BaseModel):
     updatedAt: datetime = Field(alias="updated_at")
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 class SonicEcho(BaseModel):
@@ -91,7 +91,7 @@ class SonicEcho(BaseModel):
     createdAt: datetime = Field(alias="created_at")
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 class Collection(BaseModel):
@@ -105,7 +105,7 @@ class Collection(BaseModel):
     updatedAt: datetime = Field(alias="updated_at")
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 class CollectionWithEntries(Collection):
@@ -122,7 +122,7 @@ class Annotation(BaseModel):
     createdAt: datetime = Field(alias="created_at")
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 class AnnotationWithEntry(Annotation):
@@ -139,7 +139,7 @@ class Share(BaseModel):
     createdAt: datetime = Field(alias="created_at")
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 class ToolRun(BaseModel):
@@ -151,7 +151,7 @@ class ToolRun(BaseModel):
     createdAt: datetime = Field(alias="created_at")
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 # Mystical Tool Types

@@ -1,13 +1,17 @@
 {
   "session_id": "session_1758353937",
   "started_at": "2025-09-20 07:38:57.254149",
-  "last_activity": "2025-09-20 07:38:57.255536",
+  "last_activity": "2025-09-20 07:47:16.859445",
   "user_preferences": {},
   "current_phase": 0,
   "active_collection": null,
-  "active_entry": null,
+  "active_entry": "test_integration",
   "tools_used": [
-    "e2e_test"
+    "e2e_test",
+    "complete_workflow",
+    "test_tool",
+    "integration_test",
+    "integration_demo"
   ],
   "oracle_context_stack": [],
   "sigil_intentions": [],
@@ -16,8 +20,8 @@
   "python_connected": false,
   "last_sync": null,
   "pending_sync": [],
-  "total_api_calls": 1,
+  "total_api_calls": 8,
   "total_errors": 0,
   "data_exports": 0,
-  "geometry_renders": 0
+  "geometry_renders": 1
 }

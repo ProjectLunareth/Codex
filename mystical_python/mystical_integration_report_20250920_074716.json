@@ -1,0 +1,225 @@
+{
+  "test_summary": {
+    "total_tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "success_rate": 1.0,
+    "total_duration": 4.091922,
+    "average_test_duration": 0.45445566666666665
+  },
+  "test_environment": {
+    "api_testing": true,
+    "verbose_mode": true,
+    "start_time": "2025-09-20T07:47:12.758248",
+    "end_time": "2025-09-20T07:47:16.850170",
+    "python_version": "3.11.13 (main, Jun  3 2025, 18:38:25) [GCC 14.3.0]"
+  },
+  "test_results": [
+    {
+      "test_name": "Data Models",
+      "passed": true,
+      "error": null,
+      "details": {
+        "entry_created": true,
+        "entry_id": "test_001",
+        "bookmark_attached": true,
+        "serialization_test": true,
+        "entry_count": 1,
+        "bookmark_count": 1
+      },
+      "duration": 0.001361,
+      "started_at": "2025-09-20T07:47:12.758261",
+      "completed_at": "2025-09-20T07:47:12.759622"
+    },
+    {
+      "test_name": "API Client",
+      "passed": true,
+      "error": null,
+      "details": {
+        "connection_status": true,
+        "entries_loaded": 61,
+        "collections_loaded": 0,
+        "api_responsive": true
+      },
+      "duration": 0.08287,
+      "started_at": "2025-09-20T07:47:12.759710",
+      "completed_at": "2025-09-20T07:47:12.842580"
+    },
+    {
+      "test_name": "Grimoire Viewer",
+      "passed": true,
+      "error": null,
+      "details": {
+        "viewer_initialized": true,
+        "entries_loaded": true,
+        "entry_count": 61,
+        "search_functional": true,
+        "search_results": 2,
+        "filter_functional": true,
+        "filtered_count": 61,
+        "category_extraction": true
+      },
+      "duration": 0.063463,
+      "started_at": "2025-09-20T07:47:12.842900",
+      "completed_at": "2025-09-20T07:47:12.906363"
+    },
+    {
+      "test_name": "Lunareth Synchronization",
+      "passed": true,
+      "error": null,
+      "details": {
+        "phases_loaded": 14,
+        "expected_phases": 14,
+        "phase_resolution": {
+          "void": 0,
+          "trinity": 3,
+          "golden": 5,
+          "infinite": 13
+        },
+        "resolution_success_rate": 1.0,
+        "animation_params": {
+          "0": true,
+          "5": true,
+          "12": true,
+          "13": true
+        },
+        "sequence_generated": true,
+        "sequence_length": 4,
+        "phi_value": 1.618033988749895,
+        "constants_valid": true,
+        "phases": 14
+      },
+      "duration": 0.000323,
+      "started_at": "2025-09-20T07:47:12.906744",
+      "completed_at": "2025-09-20T07:47:12.907067"
+    },
+    {
+      "test_name": "Sacred Geometry",
+      "passed": true,
+      "error": null,
+      "details": {
+        "phi": 1.618033988749895,
+        "root_2": 1.4142135623730951,
+        "constants_valid": true,
+        "vesica_calculated": true,
+        "vesica_area": 1.228369698608757,
+        "vesica_ratio": 1.7320508075688772,
+        "spiral_points": 720,
+        "spiral_generated": true,
+        "l_system_string": "F[+F]F[-F]F[+F[+F]F[-F]F]F[+F]F[-F]F[-F[+F]F[-F]F]F[+F]F[-F]F",
+        "l_system_generated": true,
+        "patterns_tested": 3,
+        "patterns_successful": 3,
+        "patterns_success_rate": 1.0
+      },
+      "duration": 0.000633,
+      "started_at": "2025-09-20T07:47:12.907101",
+      "completed_at": "2025-09-20T07:47:12.907734"
+    },
+    {
+      "test_name": "Mystical Tools",
+      "passed": true,
+      "error": null,
+      "details": {
+        "session_id": "session_1758354432",
+        "session_created": true,
+        "oracle_contexts": 8,
+        "sigil_styles": 8,
+        "sonic_types": 8,
+        "session_tracking": true,
+        "session_summary": true,
+        "oracle_test": true,
+        "sigil_test": true,
+        "sonic_test": true,
+        "tools_available": 3
+      },
+      "duration": 3.909884,
+      "started_at": "2025-09-20T07:47:12.907774",
+      "completed_at": "2025-09-20T07:47:16.817658"
+    },
+    {
+      "test_name": "Integration Bridge",
+      "passed": true,
+      "error": null,
+      "details": {
+        "bridge_created": true,
+        "status_retrieved": true,
+        "bridge_status": "unknown",
+        "api_connection": true,
+        "export_capability": false,
+        "sync_capability": false,
+        "bridge_config": true,
+        "message_queue": true,
+        "bridge_operational": true
+      },
+      "duration": 0.012598,
+      "started_at": "2025-09-20T07:47:16.817866",
+      "completed_at": "2025-09-20T07:47:16.830464"
+    },
+    {
+      "test_name": "Shared Configuration",
+      "passed": true,
+      "error": null,
+      "details": {
+        "config_loaded": true,
+        "session_loaded": true,
+        "api_url": "http://localhost:5000/api",
+        "mystical_theme": true,
+        "bridge_enabled": true,
+        "session_tracking": true,
+        "config_update": true,
+        "session_summary": true,
+        "metrics_available": true,
+        "config_management": true
+      },
+      "duration": 0.016745,
+      "started_at": "2025-09-20T07:47:16.831115",
+      "completed_at": "2025-09-20T07:47:16.847860"
+    },
+    {
+      "test_name": "End-to-End Workflow",
+      "passed": true,
+      "error": null,
+      "details": {
+        "workflow_steps": [
+          "config_setup",
+          "lunareth_phase_set",
+          "geometry_pattern_created",
+          "animation_params_calculated",
+          "test_entry_created",
+          "session_tracked"
+        ],
+        "current_phase": "Pentadic Harmony",
+        "pattern_type": "golden_spiral",
+        "animation_frequency": 1.618033988749895,
+        "test_entry_size": 400,
+        "workflow_steps_completed": 6
+      },
+      "duration": 0.002224,
+      "started_at": "2025-09-20T07:47:16.847909",
+      "completed_at": "2025-09-20T07:47:16.850133"
+    }
+  ],
+  "failed_tests": [],
+  "passed_tests": [
+    "Data Models",
+    "API Client",
+    "Grimoire Viewer",
+    "Lunareth Synchronization",
+    "Sacred Geometry",
+    "Mystical Tools",
+    "Integration Bridge",
+    "Shared Configuration",
+    "End-to-End Workflow"
+  ],
+  "integration_status": {
+    "data_models": true,
+    "grimoire_viewer": true,
+    "lunareth_sync": true,
+    "sacred_geometry": true,
+    "mystical_tools": true,
+    "integration_bridge": true,
+    "shared_config": true,
+    "end_to_end": true
+  }
+}

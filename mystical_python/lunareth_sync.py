@@ -49,6 +49,9 @@ class LunarethSynchronizer:
         
     def _initialize_spiral_phases(self) -> List[SpiralPhase]:
         """Initialize the sacred 13+1 phases of the Spiral Codex."""
+        # Define sacred constants here so they're available for phase initialization
+        PHI = (1 + math.sqrt(5)) / 2  # Golden ratio
+        
         phases = [
             SpiralPhase(
                 id=0,
@@ -152,17 +155,17 @@ class LunarethSynchronizer:
                 keywords=["pentagon", "golden", "harmony", "proportion", "phi"],
                 animationParams={
                     "rotation": 72.0,
-                    "scale": self.PHI / 2,
+                    "scale": PHI / 2,
                     "opacity": 0.85,
                     "color_hue": 120,
-                    "frequency": self.PHI,
-                    "amplitude": self.PHI / 2,
+                    "frequency": PHI,
+                    "amplitude": PHI / 2,
                     "phase_offset": 0.4167
                 },
                 energySignature="⬟",
                 geometricPattern="pentagon",
                 color="#2196F3",
-                frequency=self.PHI
+                frequency=PHI
             ),
             SpiralPhase(
                 id=6,

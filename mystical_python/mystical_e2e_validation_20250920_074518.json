@@ -1,0 +1,63 @@
+{
+  "status": "PARTIAL",
+  "timestamp": "2025-09-20T07:45:18.066122",
+  "api_testing_enabled": true,
+  "tests": {
+    "passed": 6,
+    "total": 10,
+    "success_rate": 60.0,
+    "results": {
+      "API Health Check": {
+        "success": true,
+        "message": "API health check passed",
+        "duration": 0.506072998046875
+      },
+      "Oracle Consultation": {
+        "success": false,
+        "message": "Oracle consultation failed: Oracle consultation failed: \ud83c\udf19 The cosmic energies have disrupted the connection (Status: 500) - The Oracle is currently in deep meditation. Please try again later.",
+        "duration": 2.884126901626587
+      },
+      "Sigil Generation": {
+        "success": true,
+        "message": "Sigil created: This sigil carries the energy of Peace and harmony...",
+        "duration": 0.8302085399627686
+      },
+      "Sonic Echo Creation": {
+        "success": false,
+        "message": "Sonic echo creation failed: \ud83c\udf19 The cosmic energies have disrupted the connection (Status: 500) - Sonic echo generation failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+        "duration": 2.2170586585998535
+      },
+      "Collection Export": {
+        "success": true,
+        "message": "Collection export successful: 61 entries retrieved",
+        "duration": 0.06025290489196777
+      },
+      "Bridge Status": {
+        "success": false,
+        "message": "Bridge status indicates unhealthy state",
+        "duration": 0.03863072395324707
+      },
+      "Lunareth Sync": {
+        "success": true,
+        "message": "Lunareth sync successful: Phase 7 - Septenary Mystery",
+        "duration": 0.1802384853363037
+      },
+      "Sacred Geometry": {
+        "success": true,
+        "message": "Sacred geometry successful: Golden Spiral, Vesica Piscis, Sacred Mandala",
+        "duration": 0.4734928607940674
+      },
+      "Configuration Mgmt": {
+        "success": true,
+        "message": "Configuration management successful: Session tracking works",
+        "duration": 0.0015223026275634766
+      },
+      "Complete Workflow": {
+        "success": false,
+        "message": "Complete workflow failed: Oracle consultation failed: \ud83c\udf19 The cosmic energies have disrupted the connection (Status: 500) - The Oracle is currently in deep meditation. Please try again later.",
+        "duration": 1.7390196323394775
+      }
+    }
+  },
+  "overall_success": false
+}
