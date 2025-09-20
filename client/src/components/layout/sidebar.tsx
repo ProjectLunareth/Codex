@@ -1,4 +1,4 @@
-import { Search, X, Eye, CircleDot, Lightbulb, Bookmark, Menu, ChevronLeft, BookOpen } from "lucide-react";
+import { Search, X, Eye, CircleDot, Lightbulb, Bookmark, Menu, ChevronLeft, BookOpen, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +12,7 @@ interface SidebarProps {
   selectedFilters: string[];
   onFiltersChange: (filters: string[]) => void;
   onOracleClick: () => void;
+  onSigilClick: () => void;
   isCollapsed: boolean;
   onToggleCollapse: () => void;
   entryCounts: Record<string, number>;
@@ -25,6 +26,7 @@ export default function Sidebar({
   selectedFilters,
   onFiltersChange,
   onOracleClick,
+  onSigilClick,
   isCollapsed,
   onToggleCollapse,
   entryCounts,
@@ -204,6 +206,17 @@ export default function Sidebar({
             {!isCollapsed && <span className="ml-2">Personal Grimoire</span>}
           </Button>
         </Link>
+        
+        <Button
+          onClick={onSigilClick}
+          className={`mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border ${
+            isCollapsed ? 'w-12 h-12 p-0' : 'w-full'
+          }`}
+          data-testid="button-sigil-generator"
+        >
+          <Sparkles className="h-4 w-4" />
+          {!isCollapsed && <span className="ml-2">Generate Sigils</span>}
+        </Button>
         
         <Button
           onClick={onOracleClick}

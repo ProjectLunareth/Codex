@@ -16,6 +16,20 @@ export interface OracleConsultationResponse {
   relatedConcepts: string[];
 }
 
+export interface SigilGenerationRequest {
+  intention: string;
+  style?: string;
+  symbolism?: string;
+  energyType?: string;
+}
+
+export interface SigilGenerationResponse {
+  imageUrl: string;
+  description: string;
+  symbolicMeaning: string;
+  usageGuidance: string[];
+}
+
 export async function consultOracle(request: OracleConsultationRequest): Promise<OracleConsultationResponse> {
   const { query, context, codexKnowledge } = request;
 
@@ -66,5 +80,85 @@ Provide mystical wisdom and guidance for this inquiry, drawing upon the vast tea
   } catch (error) {
     console.error("Oracle consultation failed:", error);
     throw new Error("The Oracle is currently in deep meditation. Please try again later.");
+  }
+}
+
+export async function generateMysticalSigil(request: SigilGenerationRequest): Promise<SigilGenerationResponse> {
+  const { intention, style = "traditional", symbolism = "hermetic", energyType = "balanced" } = request;
+
+  // Create a detailed prompt for mystical sigil generation
+  const sigilPrompt = `Create a mystical sigil representing the intention: "${intention}". 
+
+Style: ${style} occult art
+Symbolism: ${symbolism} tradition  
+Energy: ${energyType} vibration
+
+The sigil should be:
+- Geometrically precise and symbolically meaningful
+- Incorporating sacred geometry, mystical symbols, and esoteric elements
+- Black ink on white/parchment background
+- Centered composition with clear, bold lines
+- Suitable for ritual use and meditation
+- Combining traditional sigil creation methods with mystical aesthetics
+- Include elements like circles, triangles, Hebrew letters, alchemical symbols, planetary symbols, or runic forms as appropriate
+- Clean, high-contrast design that would work well for actual magical practice
+
+The design should evoke: ancient wisdom, spiritual power, sacred geometry, mystical tradition, and focused intention.`;
+
+  try {
+    // Generate the sigil image
+    // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
+    const imageResponse = await openai.images.generate({
+      model: "dall-e-3",
+      prompt: sigilPrompt,
+      n: 1,
+      size: "1024x1024",
+      quality: "standard",
+    });
+
+    if (!imageResponse.data || imageResponse.data.length === 0) {
+      throw new Error("Failed to generate sigil image");
+    }
+    
+    const imageUrl = imageResponse.data[0].url;
+
+    // Generate mystical interpretation and guidance
+    const interpretationPrompt = `You are a master of sigil magic and mystical symbolism. A sigil has been created for the intention: "${intention}".
+
+Provide a mystical interpretation and guidance in JSON format:
+{
+  "description": "detailed description of the sigil's visual elements and their significance",
+  "symbolicMeaning": "deep mystical meaning and symbolic interpretation of the sigil",
+  "usageGuidance": ["practical guidance 1", "practical guidance 2", "practical guidance 3", "practical guidance 4"]
+}
+
+The guidance should include information about activation, charging, meditation with the sigil, and practical magical use.`;
+
+    const interpretationResponse = await openai.chat.completions.create({
+      model: "gpt-5",
+      messages: [
+        { role: "system", content: "You are a master sigil magician and occult scholar with deep knowledge of practical magic and symbolic systems." },
+        { role: "user", content: interpretationPrompt }
+      ],
+      response_format: { type: "json_object" },
+    });
+
+    const interpretation = JSON.parse(interpretationResponse.choices[0].message.content || '{}');
+
+    return {
+      imageUrl: imageUrl || "",
+      description: interpretation.description || "A powerful mystical sigil crafted for your intention.",
+      symbolicMeaning: interpretation.symbolicMeaning || "This sigil embodies the focused energy of your intention, ready to manifest your desired outcome.",
+      usageGuidance: interpretation.usageGuidance || [
+        "Meditate on the sigil while focusing on your intention",
+        "Trace the sigil with your finger to activate its energy",
+        "Place the sigil on your altar or sacred space",
+        "Burn the sigil to release its energy into the universe"
+      ]
+    };
+
+  } catch (error) {
+    console.error("Sigil generation failed:", error);
+    throw new Error("The mystical energies are currently unstable. Please try again later.");
   }
 }

@@ -2,8 +2,8 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { codexService } from "./services/codex";
-import { consultOracle } from "./services/openai";
-import { insertBookmarkSchema, insertOracleConsultationSchema, insertGrimoireEntrySchema, type OracleRequest, type OracleResponse } from "@shared/schema";
+import { consultOracle, generateMysticalSigil } from "./services/openai";
+import { insertBookmarkSchema, insertOracleConsultationSchema, insertGrimoireEntrySchema, type OracleRequest, type OracleResponse, type SigilRequest, type SigilResponse } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -236,6 +236,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting grimoire entry:", error);
       res.status(500).json({ message: "Failed to delete grimoire entry" });
+    }
+  });
+
+  // Generate mystical sigil
+  app.post("/api/sigil/generate", async (req, res) => {
+    try {
+      const { intention, style, symbolism, energyType } = req.body;
+      
+      if (!intention || typeof intention !== 'string' || intention.trim().length === 0) {
+        return res.status(400).json({ message: "Intention is required and must be a non-empty string" });
+      }
+
+      const sigilRequest = {
+        intention: intention.trim(),
+        style: style || "traditional",
+        symbolism: symbolism || "hermetic", 
+        energyType: energyType || "balanced"
+      };
+
+      const sigilResponse = await generateMysticalSigil(sigilRequest);
+      res.json(sigilResponse);
+    } catch (error) {
+      console.error("Sigil generation error:", error);
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : "Sigil generation failed"
+      });
     }
   });
 

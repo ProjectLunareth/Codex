@@ -90,3 +90,17 @@ export type OracleResponse = {
   response: string;
   consultationId: string;
 };
+
+export type SigilRequest = {
+  intention: string;
+  style?: string;
+  symbolism?: string;
+  energyType?: string;
+};
+
+export type SigilResponse = {
+  imageUrl: string;
+  description: string;
+  symbolicMeaning: string;
+  usageGuidance: string[];
+};
