@@ -162,3 +162,78 @@ The guidance should include information about activation, charging, meditation w
     throw new Error("The mystical energies are currently unstable. Please try again later.");
   }
 }
+
+export interface SonicEchoRequest {
+  text: string;
+  voice?: string;
+  style?: string;
+  title?: string;
+  sourceType?: string;
+  sourceId?: string;
+}
+
+export interface SonicEchoResponse {
+  audioBuffer: Buffer;
+  duration?: number;
+}
+
+// Generate sonic echo using OpenAI TTS
+export async function generateSonicEcho(request: SonicEchoRequest): Promise<SonicEchoResponse> {
+  if (!openai) {
+    throw new Error("OpenAI client not initialized");
+  }
+
+  try {
+    // Map user-friendly voice names to OpenAI voice options
+    const voiceMap: Record<string, string> = {
+      'mystical': 'onyx',
+      'ethereal': 'nova', 
+      'ancient': 'echo',
+      'whisper': 'shimmer',
+      'commanding': 'alloy',
+      'sage': 'fable',
+      'default': 'onyx'
+    };
+
+    const selectedVoice = voiceMap[request.voice || 'mystical'] || 'onyx';
+
+    // Enhance text with mystical style instructions if specified
+    let enhancedText = request.text;
+    if (request.style) {
+      const stylePrompts: Record<string, string> = {
+        'ceremonial': '(speaking in a slow, ceremonial tone with reverence)',
+        'incantation': '(chanting with mystical rhythm and power)',
+        'whispered': '(speaking in hushed, secretive tones)',
+        'prophetic': '(speaking with ancient wisdom and gravitas)',
+        'meditative': '(speaking with calm, peaceful cadence)',
+        'dramatic': '(speaking with theatrical intensity)'
+      };
+      
+      const stylePrompt = stylePrompts[request.style];
+      if (stylePrompt) {
+        enhancedText = `${stylePrompt} ${request.text}`;
+      }
+    }
+
+    // Use TTS-1-HD for higher quality mystical audio
+    const response = await openai.audio.speech.create({
+      model: "tts-1-hd",
+      voice: selectedVoice as any,
+      input: enhancedText,
+      response_format: "mp3",
+    });
+
+    const audioBuffer = Buffer.from(await response.arrayBuffer());
+    
+    // Audio duration estimation (rough calculation based on text length and speech rate)
+    const estimatedDuration = Math.ceil(enhancedText.length / 14); // ~14 chars per second average speech rate
+    
+    return { 
+      audioBuffer, 
+      duration: estimatedDuration 
+    };
+  } catch (error) {
+    console.error("Sonic echo generation error:", error);
+    throw new Error(`Sonic echo generation failed: ${error instanceof Error ? error.message : "Unknown error"}`);
+  }
+}

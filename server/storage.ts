@@ -1,4 +1,4 @@
-import { type CodexEntry, type Bookmark, type OracleConsultation, type GrimoireEntry, type InsertCodexEntry, type InsertBookmark, type InsertOracleConsultation, type InsertGrimoireEntry, type CodexEntryWithBookmark } from "@shared/schema";
+import { type CodexEntry, type Bookmark, type OracleConsultation, type GrimoireEntry, type SonicEcho, type InsertCodexEntry, type InsertBookmark, type InsertOracleConsultation, type InsertGrimoireEntry, type InsertSonicEcho, type CodexEntryWithBookmark } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -25,6 +25,12 @@ export interface IStorage {
   createGrimoireEntry(entry: InsertGrimoireEntry): Promise<GrimoireEntry>;
   updateGrimoireEntry(id: string, updates: Partial<InsertGrimoireEntry>): Promise<GrimoireEntry | undefined>;
   deleteGrimoireEntry(id: string): Promise<boolean>;
+  
+  // Sonic echoes
+  getSonicEchoes(): Promise<SonicEcho[]>;
+  getSonicEcho(id: string): Promise<SonicEcho | undefined>;
+  createSonicEcho(echo: InsertSonicEcho): Promise<SonicEcho>;
+  deleteSonicEcho(id: string): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
@@ -32,12 +38,14 @@ export class MemStorage implements IStorage {
   private bookmarks: Map<string, Bookmark>;
   private oracleConsultations: Map<string, OracleConsultation>;
   private grimoireEntries: Map<string, GrimoireEntry>;
+  private sonicEchoes: Map<string, SonicEcho>;
 
   constructor() {
     this.codexEntries = new Map();
     this.bookmarks = new Map();
     this.oracleConsultations = new Map();
     this.grimoireEntries = new Map();
+    this.sonicEchoes = new Map();
   }
 
   async getCodexEntries(): Promise<CodexEntryWithBookmark[]> {
@@ -195,6 +203,29 @@ export class MemStorage implements IStorage {
 
   async deleteGrimoireEntry(id: string): Promise<boolean> {
     return this.grimoireEntries.delete(id);
+  }
+
+  async getSonicEchoes(): Promise<SonicEcho[]> {
+    return Array.from(this.sonicEchoes.values())
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getSonicEcho(id: string): Promise<SonicEcho | undefined> {
+    return this.sonicEchoes.get(id);
+  }
+
+  async createSonicEcho(insertEcho: InsertSonicEcho): Promise<SonicEcho> {
+    const echo: SonicEcho = {
+      ...insertEcho,
+      id: randomUUID(),
+      createdAt: new Date(),
+    };
+    this.sonicEchoes.set(echo.id, echo);
+    return echo;
+  }
+
+  async deleteSonicEcho(id: string): Promise<boolean> {
+    return this.sonicEchoes.delete(id);
   }
 }
 

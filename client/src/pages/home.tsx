@@ -4,6 +4,7 @@ import MainContent from "@/components/layout/main-content";
 import EntryModal from "@/components/codex/entry-modal";
 import OracleModal from "@/components/codex/oracle-modal";
 import SigilGenerator from "@/components/sigil/sigil-generator";
+import SonicEchoGenerator from "@/components/sonic/sonic-echo-generator";
 import { useCodex } from "@/hooks/use-codex";
 import { type CodexEntryWithBookmark } from "@shared/schema";
 
@@ -11,6 +12,7 @@ export default function Home() {
   const [selectedEntry, setSelectedEntry] = useState<CodexEntryWithBookmark | null>(null);
   const [isOracleOpen, setIsOracleOpen] = useState(false);
   const [isSigilGeneratorOpen, setIsSigilGeneratorOpen] = useState(false);
+  const [isSonicEchoGeneratorOpen, setIsSonicEchoGeneratorOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -49,6 +51,14 @@ export default function Home() {
     setIsSigilGeneratorOpen(false);
   };
 
+  const openSonicEchoGenerator = () => {
+    setIsSonicEchoGeneratorOpen(true);
+  };
+
+  const closeSonicEchoGenerator = () => {
+    setIsSonicEchoGeneratorOpen(false);
+  };
+
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
@@ -64,6 +74,7 @@ export default function Home() {
         onFiltersChange={setSelectedFilters}
         onOracleClick={openOracle}
         onSigilClick={openSigilGenerator}
+        onSonicEchoClick={openSonicEchoGenerator}
         isCollapsed={isSidebarCollapsed}
         onToggleCollapse={toggleSidebar}
         entryCounts={{
@@ -106,6 +117,11 @@ export default function Home() {
       <SigilGenerator
         isOpen={isSigilGeneratorOpen}
         onClose={closeSigilGenerator}
+      />
+
+      <SonicEchoGenerator
+        isOpen={isSonicEchoGeneratorOpen}
+        onClose={closeSonicEchoGenerator}
       />
     </div>
   );

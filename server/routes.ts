@@ -2,8 +2,8 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { codexService } from "./services/codex";
-import { consultOracle, generateMysticalSigil } from "./services/openai";
-import { insertBookmarkSchema, insertOracleConsultationSchema, insertGrimoireEntrySchema, type OracleRequest, type OracleResponse, type SigilRequest, type SigilResponse } from "@shared/schema";
+import { consultOracle, generateMysticalSigil, generateSonicEcho } from "./services/openai";
+import { insertBookmarkSchema, insertOracleConsultationSchema, insertGrimoireEntrySchema, insertSonicEchoSchema, type OracleRequest, type OracleResponse, type SigilRequest, type SigilResponse, type SonicEchoRequest, type SonicEchoResponse } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -262,6 +262,86 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ 
         message: error instanceof Error ? error.message : "Sigil generation failed"
       });
+    }
+  });
+
+  // Generate sonic echo (TTS)
+  app.post("/api/sonic-echo/generate", async (req, res) => {
+    try {
+      const { text, voice, style, title, sourceType, sourceId } = req.body;
+      
+      if (!text || typeof text !== 'string' || text.trim().length === 0) {
+        return res.status(400).json({ message: "Text is required and must be a non-empty string" });
+      }
+
+      const sonicRequest = {
+        text: text.trim(),
+        voice: voice || "mystical",
+        style: style,
+        title: title || "Sonic Echo",
+        sourceType: sourceType || "custom_text",
+        sourceId: sourceId
+      };
+
+      // Generate the audio using OpenAI TTS
+      const { audioBuffer, duration } = await generateSonicEcho(sonicRequest);
+      
+      // For now, we'll return the audio as base64 data URL (in production, you'd save to file storage)
+      const audioBase64 = audioBuffer.toString('base64');
+      const audioDataUrl = `data:audio/mp3;base64,${audioBase64}`;
+
+      // Save echo record to storage
+      const sonicEcho = await storage.createSonicEcho({
+        title: sonicRequest.title,
+        sourceText: sonicRequest.text,
+        voice: sonicRequest.voice,
+        style: sonicRequest.style,
+        audioUrl: audioDataUrl,
+        duration: duration,
+        sourceType: sonicRequest.sourceType,
+        sourceId: sonicRequest.sourceId
+      });
+
+      const sonicResponse: SonicEchoResponse = {
+        id: sonicEcho.id,
+        audioUrl: audioDataUrl,
+        title: sonicEcho.title,
+        duration: sonicEcho.duration || undefined,
+        voice: sonicEcho.voice,
+        style: sonicEcho.style || undefined
+      };
+
+      res.json(sonicResponse);
+    } catch (error) {
+      console.error("Sonic echo generation error:", error);
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : "Sonic echo generation failed"
+      });
+    }
+  });
+
+  // Get sonic echoes
+  app.get("/api/sonic-echo/list", async (req, res) => {
+    try {
+      const echoes = await storage.getSonicEchoes();
+      res.json(echoes);
+    } catch (error) {
+      console.error("Error fetching sonic echoes:", error);
+      res.status(500).json({ message: "Failed to fetch sonic echoes" });
+    }
+  });
+
+  // Delete sonic echo
+  app.delete("/api/sonic-echo/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteSonicEcho(req.params.id);
+      if (!success) {
+        return res.status(404).json({ message: "Sonic echo not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting sonic echo:", error);
+      res.status(500).json({ message: "Failed to delete sonic echo" });
     }
   });
 
