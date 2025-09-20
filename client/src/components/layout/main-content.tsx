@@ -1,4 +1,4 @@
-import { Grid, List, ChevronDown } from "lucide-react";
+import { Grid, List, ChevronDown, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import EntryCard from "@/components/codex/entry-card";
@@ -13,6 +13,8 @@ interface MainContentProps {
   sortBy: "title" | "category" | "size" | "date";
   onSortChange: (sort: "title" | "category" | "size" | "date") => void;
   onEntryClick: (entry: CodexEntryWithBookmark) => void;
+  isSidebarCollapsed: boolean;
+  onToggleSidebar: () => void;
 }
 
 export default function MainContent({
@@ -24,6 +26,8 @@ export default function MainContent({
   sortBy,
   onSortChange,
   onEntryClick,
+  isSidebarCollapsed,
+  onToggleSidebar,
 }: MainContentProps) {
   const getCategoryDisplayName = (category: string | null) => {
     if (!category) return "All Entries";
@@ -59,6 +63,17 @@ export default function MainContent({
       {/* Header Bar */}
       <header className="mystical-border border-l-0 border-t-0 border-r-0 p-4 flex items-center justify-between">
         <div className="flex items-center space-x-4">
+          {isSidebarCollapsed && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onToggleSidebar}
+              className="mystical-border bg-card text-primary hover:bg-accent/10 p-2"
+              data-testid="button-expand-sidebar"
+            >
+              <Menu className="h-4 w-4" />
+            </Button>
+          )}
           <h2 className="font-cinzel text-xl font-semibold text-primary" data-testid="text-current-category">
             {getCategoryDisplayName(selectedCategory)}
           </h2>

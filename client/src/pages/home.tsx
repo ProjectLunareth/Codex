@@ -14,6 +14,7 @@ export default function Home() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState<"title" | "category" | "size" | "date">("title");
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const { filteredEntries, isLoading } = useCodex({
     searchQuery,
@@ -38,6 +39,10 @@ export default function Home() {
     setIsOracleOpen(false);
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  };
+
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       <Sidebar
@@ -48,6 +53,8 @@ export default function Home() {
         selectedFilters={selectedFilters}
         onFiltersChange={setSelectedFilters}
         onOracleClick={openOracle}
+        isCollapsed={isSidebarCollapsed}
+        onToggleCollapse={toggleSidebar}
         entryCounts={{
           cosmogenesis: filteredEntries.filter(e => e.category === "cosmogenesis").length,
           psychogenesis: filteredEntries.filter(e => e.category === "psychogenesis").length,
@@ -68,6 +75,8 @@ export default function Home() {
         sortBy={sortBy}
         onSortChange={setSortBy}
         onEntryClick={handleEntryClick}
+        isSidebarCollapsed={isSidebarCollapsed}
+        onToggleSidebar={toggleSidebar}
       />
 
       {selectedEntry && (

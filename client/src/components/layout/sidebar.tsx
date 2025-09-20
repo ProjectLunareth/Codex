@@ -1,4 +1,4 @@
-import { Search, X, Eye, CircleDot, Lightbulb, Bookmark } from "lucide-react";
+import { Search, X, Eye, CircleDot, Lightbulb, Bookmark, Menu, ChevronLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +11,8 @@ interface SidebarProps {
   selectedFilters: string[];
   onFiltersChange: (filters: string[]) => void;
   onOracleClick: () => void;
+  isCollapsed: boolean;
+  onToggleCollapse: () => void;
   entryCounts: Record<string, number>;
 }
 
@@ -22,6 +24,8 @@ export default function Sidebar({
   selectedFilters,
   onFiltersChange,
   onOracleClick,
+  isCollapsed,
+  onToggleCollapse,
   entryCounts,
 }: SidebarProps) {
   const handleFilterToggle = (filter: string) => {
@@ -50,18 +54,34 @@ export default function Sidebar({
   ];
 
   return (
-    <aside className="sidebar-nav w-80 flex flex-col p-6 overflow-y-auto">
-      <header className="mb-8">
-        <h1 className="font-cinzel text-2xl font-bold text-primary tracking-wider text-center">
-          ✦ CODEX OF HIDDEN KNOWING ✦
-        </h1>
-        <p className="text-sm text-muted-foreground text-center mt-2 italic">
-          Digital Archive of Sacred Wisdom
-        </p>
+    <aside className={`sidebar-nav flex flex-col overflow-y-auto transition-all duration-300 ${
+      isCollapsed ? 'w-16 p-2' : 'w-80 p-6'
+    }`}>
+      <header className={`mb-8 relative ${isCollapsed ? 'mb-4' : ''}`}>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onToggleCollapse}
+          className="absolute -right-3 top-0 z-10 mystical-border bg-card text-primary hover:bg-accent/10 p-2 rounded-full shadow-lg"
+          data-testid="button-toggle-sidebar"
+        >
+          {isCollapsed ? <Menu className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+        </Button>
+        {!isCollapsed && (
+          <>
+            <h1 className="font-cinzel text-2xl font-bold text-primary tracking-wider text-center">
+              ✦ CODEX OF HIDDEN KNOWING ✦
+            </h1>
+            <p className="text-sm text-muted-foreground text-center mt-2 italic">
+              Digital Archive of Sacred Wisdom
+            </p>
+          </>
+        )}
       </header>
 
       {/* Search Interface */}
-      <div className="mystical-border rounded-lg p-4 mb-6">
+      {!isCollapsed && (
+        <div className="mystical-border rounded-lg p-4 mb-6">
         <div className="relative mb-4">
           <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
           <Input
@@ -117,9 +137,11 @@ export default function Sidebar({
           </div>
         </div>
       </div>
+      )}
 
       {/* Category Navigation */}
-      <nav className="space-y-6 flex-1">
+      {!isCollapsed && (
+        <nav className="space-y-6 flex-1">
         <div>
           <h3 className="font-cinzel text-lg font-semibold text-primary mb-3 flex items-center">
             <CircleDot className="h-4 w-4 mr-2" />
@@ -166,16 +188,19 @@ export default function Sidebar({
           </ul>
         </div>
       </nav>
+      )}
 
       {/* Oracle Consultation Button */}
       <div className="mt-auto pt-6">
         <Button
           onClick={onOracleClick}
-          className="w-full mystical-border oracle-glow font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border"
+          className={`mystical-border oracle-glow font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border ${
+            isCollapsed ? 'w-12 h-12 p-0' : 'w-full'
+          }`}
           data-testid="button-oracle"
         >
-          <Eye className="h-4 w-4 mr-2" />
-          Consult the Oracle
+          <Eye className="h-4 w-4" />
+          {!isCollapsed && <span className="ml-2">Consult the Oracle</span>}
         </Button>
       </div>
     </aside>
