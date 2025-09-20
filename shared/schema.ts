@@ -97,8 +97,8 @@ export const shares = pgTable("shares", {
 export const toolRuns = pgTable("tool_runs", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   type: text("type").notNull(), // 'scrying', 'praxis', 'chronicle', etc.
-  input: jsonb("input").notNull(), // Tool-specific input parameters
-  output: jsonb("output").notNull(), // Tool-specific output data
+  input: text("input").notNull(), // User input text
+  output: text("output").notNull(), // AI response text
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 

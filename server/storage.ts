@@ -386,8 +386,8 @@ export class MemStorage implements IStorage {
     const toolRun: ToolRun = {
       ...insertToolRun,
       id: randomUUID(),
-      input: { ...insertToolRun.input },
-      output: { ...insertToolRun.output },
+      input: insertToolRun.input,
+      output: insertToolRun.output,
       createdAt: new Date(),
     };
     this.toolRuns.set(toolRun.id, toolRun);
