@@ -1,4 +1,4 @@
-import { Search, X, Eye, CircleDot, Lightbulb, Bookmark, Menu, ChevronLeft, BookOpen, Sparkles, Volume2 } from "lucide-react";
+import { Search, X, Eye, CircleDot, Lightbulb, Bookmark, Menu, ChevronLeft, BookOpen, Sparkles, Volume2, Network, Share2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +14,9 @@ interface SidebarProps {
   onOracleClick: () => void;
   onSigilClick: () => void;
   onSonicEchoClick: () => void;
+  onGraphClick: () => void;
+  onCollectionsClick: () => void;
+  onToolsClick: () => void;
   isCollapsed: boolean;
   onToggleCollapse: () => void;
   entryCounts: Record<string, number>;
@@ -29,6 +32,9 @@ export default function Sidebar({
   onOracleClick,
   onSigilClick,
   onSonicEchoClick,
+  onGraphClick,
+  onCollectionsClick,
+  onToolsClick,
   isCollapsed,
   onToggleCollapse,
   entryCounts,
@@ -240,6 +246,39 @@ export default function Sidebar({
         >
           <Eye className="h-4 w-4" />
           {!isCollapsed && <span className="ml-2">Consult the Oracle</span>}
+        </Button>
+        
+        <Button
+          onClick={onGraphClick}
+          className={`mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border ${
+            isCollapsed ? 'w-12 h-12 p-0' : 'w-full'
+          }`}
+          data-testid="button-book-structure"
+        >
+          <Network className="h-4 w-4" />
+          {!isCollapsed && <span className="ml-2">Book Structure</span>}
+        </Button>
+        
+        <Button
+          onClick={onCollectionsClick}
+          className={`mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border ${
+            isCollapsed ? 'w-12 h-12 p-0' : 'w-full'
+          }`}
+          data-testid="button-export-collections"
+        >
+          <Share2 className="h-4 w-4" />
+          {!isCollapsed && <span className="ml-2">Export Collections</span>}
+        </Button>
+        
+        <Button
+          onClick={onToolsClick}
+          className={`mystical-border oracle-glow font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border ${
+            isCollapsed ? 'w-12 h-12 p-0' : 'w-full'
+          }`}
+          data-testid="button-mystical-tools"
+        >
+          <Sparkles className="h-4 w-4" />
+          {!isCollapsed && <span className="ml-2">Mystical Tools Atelier</span>}
         </Button>
       </div>
     </aside>

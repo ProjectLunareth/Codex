@@ -2,8 +2,8 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { codexService } from "./services/codex";
-import { consultOracle, generateMysticalSigil, generateSonicEcho } from "./services/openai";
-import { insertBookmarkSchema, insertOracleConsultationSchema, insertGrimoireEntrySchema, insertSonicEchoSchema, type OracleRequest, type OracleResponse, type SigilRequest, type SigilResponse, type SonicEchoRequest, type SonicEchoResponse } from "@shared/schema";
+import { consultOracle, generateMysticalSigil, generateSonicEcho, processMysticalTool } from "./services/openai";
+import { insertBookmarkSchema, insertOracleConsultationSchema, insertGrimoireEntrySchema, insertSonicEchoSchema, insertCollectionSchema, insertAnnotationSchema, insertShareSchema, insertToolRunSchema, type OracleRequest, type OracleResponse, type SigilRequest, type SigilResponse, type SonicEchoRequest, type SonicEchoResponse, type MysticalToolRequest, type MysticalToolResponse, type ShareRequest, type ShareResponse, type ExportFormat } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -342,6 +342,300 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting sonic echo:", error);
       res.status(500).json({ message: "Failed to delete sonic echo" });
+    }
+  });
+
+  // ===== COLLECTIONS ROUTES =====
+  // Get all collections
+  app.get("/api/collections", async (req, res) => {
+    try {
+      const collections = await storage.getCollections();
+      res.json(collections);
+    } catch (error) {
+      console.error("Error fetching collections:", error);
+      res.status(500).json({ message: "Failed to fetch collections" });
+    }
+  });
+
+  // Get single collection
+  app.get("/api/collections/:id", async (req, res) => {
+    try {
+      const collection = await storage.getCollection(req.params.id);
+      if (!collection) {
+        return res.status(404).json({ message: "Collection not found" });
+      }
+      res.json(collection);
+    } catch (error) {
+      console.error("Error fetching collection:", error);
+      res.status(500).json({ message: "Failed to fetch collection" });
+    }
+  });
+
+  // Create collection
+  app.post("/api/collections", async (req, res) => {
+    try {
+      const validatedData = insertCollectionSchema.parse(req.body);
+      const collection = await storage.createCollection(validatedData);
+      res.status(201).json(collection);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid collection data", errors: error.errors });
+      }
+      console.error("Error creating collection:", error);
+      res.status(500).json({ message: "Failed to create collection" });
+    }
+  });
+
+  // Update collection
+  app.put("/api/collections/:id", async (req, res) => {
+    try {
+      const validatedData = insertCollectionSchema.partial().parse(req.body);
+      const collection = await storage.updateCollection(req.params.id, validatedData);
+      if (!collection) {
+        return res.status(404).json({ message: "Collection not found" });
+      }
+      res.json(collection);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid collection data", errors: error.errors });
+      }
+      console.error("Error updating collection:", error);
+      res.status(500).json({ message: "Failed to update collection" });
+    }
+  });
+
+  // Delete collection
+  app.delete("/api/collections/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteCollection(req.params.id);
+      if (!success) {
+        return res.status(404).json({ message: "Collection not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting collection:", error);
+      res.status(500).json({ message: "Failed to delete collection" });
+    }
+  });
+
+  // Export collection
+  app.post("/api/collections/:id/export", async (req, res) => {
+    try {
+      const { format } = req.body as { format: ExportFormat };
+      const collection = await storage.getCollection(req.params.id);
+      
+      if (!collection) {
+        return res.status(404).json({ message: "Collection not found" });
+      }
+
+      if (format === 'json') {
+        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Content-Disposition', `attachment; filename="${collection.title}.json"`);
+        res.json({
+          collection: {
+            title: collection.title,
+            notes: collection.notes,
+            createdAt: collection.createdAt
+          },
+          entries: collection.entries
+        });
+      } else if (format === 'markdown') {
+        const markdown = [
+          `# ${collection.title}`,
+          '',
+          collection.notes ? `${collection.notes}` : '',
+          collection.notes ? '' : '',
+          `## Entries (${collection.entries.length})`,
+          '',
+          ...collection.entries.map(entry => [
+            `### ${entry.filename}`,
+            `**Category:** ${entry.category}`,
+            entry.subcategory ? `**Subcategory:** ${entry.subcategory}` : '',
+            `**Summary:** ${entry.summary}`,
+            '',
+            entry.fullText,
+            '',
+            '---',
+            ''
+          ].filter(Boolean)).flat()
+        ].filter(Boolean).join('\n');
+
+        res.setHeader('Content-Type', 'text/markdown');
+        res.setHeader('Content-Disposition', `attachment; filename="${collection.title}.md"`);
+        res.send(markdown);
+      } else {
+        res.status(400).json({ message: "Invalid export format. Use 'json' or 'markdown'" });
+      }
+    } catch (error) {
+      console.error("Error exporting collection:", error);
+      res.status(500).json({ message: "Failed to export collection" });
+    }
+  });
+
+  // ===== ANNOTATIONS ROUTES =====
+  // Get all annotations
+  app.get("/api/annotations", async (req, res) => {
+    try {
+      const annotations = await storage.getAnnotations();
+      res.json(annotations);
+    } catch (error) {
+      console.error("Error fetching annotations:", error);
+      res.status(500).json({ message: "Failed to fetch annotations" });
+    }
+  });
+
+  // Get annotations by entry
+  app.get("/api/entries/:entryId/annotations", async (req, res) => {
+    try {
+      const annotations = await storage.getAnnotationsByEntry(req.params.entryId);
+      res.json(annotations);
+    } catch (error) {
+      console.error("Error fetching annotations:", error);
+      res.status(500).json({ message: "Failed to fetch annotations" });
+    }
+  });
+
+  // Create annotation
+  app.post("/api/annotations", async (req, res) => {
+    try {
+      const validatedData = insertAnnotationSchema.parse(req.body);
+      const annotation = await storage.createAnnotation(validatedData);
+      res.status(201).json(annotation);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid annotation data", errors: error.errors });
+      }
+      console.error("Error creating annotation:", error);
+      res.status(500).json({ message: "Failed to create annotation" });
+    }
+  });
+
+  // Delete annotation
+  app.delete("/api/annotations/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteAnnotation(req.params.id);
+      if (!success) {
+        return res.status(404).json({ message: "Annotation not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting annotation:", error);
+      res.status(500).json({ message: "Failed to delete annotation" });
+    }
+  });
+
+  // ===== SHARES ROUTES =====
+  // Get all shares
+  app.get("/api/shares", async (req, res) => {
+    try {
+      const shares = await storage.getShares();
+      res.json(shares);
+    } catch (error) {
+      console.error("Error fetching shares:", error);
+      res.status(500).json({ message: "Failed to fetch shares" });
+    }
+  });
+
+  // Create share
+  app.post("/api/shares", async (req, res) => {
+    try {
+      const { targetType, targetId } = req.body as ShareRequest;
+      const shareToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      
+      const share = await storage.createShare({
+        targetType,
+        targetId,
+        shareToken
+      });
+
+      const response: ShareResponse = {
+        shareToken: share.shareToken,
+        shareUrl: `${req.protocol}://${req.get('host')}/shared/${share.shareToken}`
+      };
+
+      res.status(201).json(response);
+    } catch (error) {
+      console.error("Error creating share:", error);
+      res.status(500).json({ message: "Failed to create share" });
+    }
+  });
+
+  // Get shared content
+  app.get("/api/shared/:token", async (req, res) => {
+    try {
+      const share = await storage.getShare(req.params.token);
+      if (!share) {
+        return res.status(404).json({ message: "Share not found or expired" });
+      }
+
+      if (share.targetType === 'entry') {
+        const entry = await storage.getCodexEntry(share.targetId);
+        res.json({ type: 'entry', data: entry });
+      } else if (share.targetType === 'collection') {
+        const collection = await storage.getCollection(share.targetId);
+        res.json({ type: 'collection', data: collection });
+      } else {
+        res.status(400).json({ message: "Invalid share type" });
+      }
+    } catch (error) {
+      console.error("Error fetching shared content:", error);
+      res.status(500).json({ message: "Failed to fetch shared content" });
+    }
+  });
+
+  // Delete share
+  app.delete("/api/shares/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteShare(req.params.id);
+      if (!success) {
+        return res.status(404).json({ message: "Share not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting share:", error);
+      res.status(500).json({ message: "Failed to delete share" });
+    }
+  });
+
+  // ===== MYSTICAL TOOLS ROUTES =====
+  // Get tool runs
+  app.get("/api/tools/runs", async (req, res) => {
+    try {
+      const type = req.query.type as string;
+      const toolRuns = type 
+        ? await storage.getToolRunsByType(type)
+        : await storage.getToolRuns();
+      res.json(toolRuns);
+    } catch (error) {
+      console.error("Error fetching tool runs:", error);
+      res.status(500).json({ message: "Failed to fetch tool runs" });
+    }
+  });
+
+  // Run mystical tool
+  app.post("/api/tools/run", async (req, res) => {
+    try {
+      const request = insertToolRunSchema.parse(req.body);
+      
+      // Process the mystical tool using OpenAI
+      const toolResult = await processMysticalTool({
+        type: request.type,
+        input: request.input
+      });
+      
+      // Save tool run to storage with result
+      const toolRun = await storage.createToolRun({
+        type: request.type,
+        input: request.input,
+        output: toolResult.output
+      });
+
+      res.json(toolRun);
+    } catch (error) {
+      console.error("Mystical tool processing error:", error);
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : "Mystical tool processing failed"
+      });
     }
   });
 

@@ -1,4 +1,4 @@
-import { type CodexEntry, type Bookmark, type OracleConsultation, type GrimoireEntry, type SonicEcho, type InsertCodexEntry, type InsertBookmark, type InsertOracleConsultation, type InsertGrimoireEntry, type InsertSonicEcho, type CodexEntryWithBookmark } from "@shared/schema";
+import { type CodexEntry, type Bookmark, type OracleConsultation, type GrimoireEntry, type SonicEcho, type Collection, type Annotation, type Share, type ToolRun, type InsertCodexEntry, type InsertBookmark, type InsertOracleConsultation, type InsertGrimoireEntry, type InsertSonicEcho, type InsertCollection, type InsertAnnotation, type InsertShare, type InsertToolRun, type CodexEntryWithBookmark, type CollectionWithEntries, type AnnotationWithEntry } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -31,6 +31,31 @@ export interface IStorage {
   getSonicEcho(id: string): Promise<SonicEcho | undefined>;
   createSonicEcho(echo: InsertSonicEcho): Promise<SonicEcho>;
   deleteSonicEcho(id: string): Promise<boolean>;
+  
+  // Collections
+  getCollections(): Promise<CollectionWithEntries[]>;
+  getCollection(id: string): Promise<CollectionWithEntries | undefined>;
+  createCollection(collection: InsertCollection): Promise<Collection>;
+  updateCollection(id: string, updates: Partial<InsertCollection>): Promise<Collection | undefined>;
+  deleteCollection(id: string): Promise<boolean>;
+  
+  // Annotations
+  getAnnotations(): Promise<AnnotationWithEntry[]>;
+  getAnnotationsByEntry(entryId: string): Promise<Annotation[]>;
+  createAnnotation(annotation: InsertAnnotation): Promise<Annotation>;
+  deleteAnnotation(id: string): Promise<boolean>;
+  
+  // Shares
+  getShares(): Promise<Share[]>;
+  getShare(shareToken: string): Promise<Share | undefined>;
+  createShare(share: InsertShare): Promise<Share>;
+  deleteShare(id: string): Promise<boolean>;
+  
+  // Tool runs
+  getToolRuns(): Promise<ToolRun[]>;
+  getToolRunsByType(type: string): Promise<ToolRun[]>;
+  createToolRun(toolRun: InsertToolRun): Promise<ToolRun>;
+  deleteToolRun(id: string): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
@@ -39,6 +64,10 @@ export class MemStorage implements IStorage {
   private oracleConsultations: Map<string, OracleConsultation>;
   private grimoireEntries: Map<string, GrimoireEntry>;
   private sonicEchoes: Map<string, SonicEcho>;
+  private collections: Map<string, Collection>;
+  private annotations: Map<string, Annotation>;
+  private shares: Map<string, Share>;
+  private toolRuns: Map<string, ToolRun>;
 
   constructor() {
     this.codexEntries = new Map();
@@ -46,6 +75,10 @@ export class MemStorage implements IStorage {
     this.oracleConsultations = new Map();
     this.grimoireEntries = new Map();
     this.sonicEchoes = new Map();
+    this.collections = new Map();
+    this.annotations = new Map();
+    this.shares = new Map();
+    this.toolRuns = new Map();
   }
 
   async getCodexEntries(): Promise<CodexEntryWithBookmark[]> {
@@ -226,6 +259,143 @@ export class MemStorage implements IStorage {
 
   async deleteSonicEcho(id: string): Promise<boolean> {
     return this.sonicEchoes.delete(id);
+  }
+
+  // Collections implementation
+  async getCollections(): Promise<CollectionWithEntries[]> {
+    const collections = Array.from(this.collections.values());
+    return Promise.all(collections.map(async collection => ({
+      ...collection,
+      entries: collection.entryIds
+        .map(id => this.codexEntries.get(id))
+        .filter(Boolean) as CodexEntry[]
+    })));
+  }
+
+  async getCollection(id: string): Promise<CollectionWithEntries | undefined> {
+    const collection = this.collections.get(id);
+    if (!collection) return undefined;
+    
+    const entries = collection.entryIds
+      .map(id => this.codexEntries.get(id))
+      .filter(Boolean) as CodexEntry[];
+    
+    return { ...collection, entries };
+  }
+
+  async createCollection(insertCollection: InsertCollection): Promise<Collection> {
+    const collection: Collection = {
+      ...insertCollection,
+      id: randomUUID(),
+      entryIds: insertCollection.entryIds ? [...insertCollection.entryIds] : [],
+      notes: insertCollection.notes || null,
+      isPublic: insertCollection.isPublic ?? false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.collections.set(collection.id, collection);
+    return collection;
+  }
+
+  async updateCollection(id: string, updates: Partial<InsertCollection>): Promise<Collection | undefined> {
+    const existing = this.collections.get(id);
+    if (!existing) return undefined;
+    
+    const updated: Collection = {
+      ...existing,
+      ...updates,
+      entryIds: updates.entryIds ? [...updates.entryIds] : existing.entryIds,
+      updatedAt: new Date(),
+    };
+    this.collections.set(id, updated);
+    return updated;
+  }
+
+  async deleteCollection(id: string): Promise<boolean> {
+    return this.collections.delete(id);
+  }
+
+  // Annotations implementation
+  async getAnnotations(): Promise<AnnotationWithEntry[]> {
+    const annotations = Array.from(this.annotations.values());
+    return Promise.all(annotations.map(async annotation => ({
+      ...annotation,
+      entry: this.codexEntries.get(annotation.entryId)
+    })));
+  }
+
+  async getAnnotationsByEntry(entryId: string): Promise<Annotation[]> {
+    return Array.from(this.annotations.values())
+      .filter(annotation => annotation.entryId === entryId)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async createAnnotation(insertAnnotation: InsertAnnotation): Promise<Annotation> {
+    const annotation: Annotation = {
+      ...insertAnnotation,
+      id: randomUUID(),
+      createdAt: new Date(),
+    };
+    this.annotations.set(annotation.id, annotation);
+    return annotation;
+  }
+
+  async deleteAnnotation(id: string): Promise<boolean> {
+    return this.annotations.delete(id);
+  }
+
+  // Shares implementation
+  async getShares(): Promise<Share[]> {
+    return Array.from(this.shares.values())
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getShare(shareToken: string): Promise<Share | undefined> {
+    return Array.from(this.shares.values())
+      .find(share => share.shareToken === shareToken);
+  }
+
+  async createShare(insertShare: InsertShare): Promise<Share> {
+    const share: Share = {
+      ...insertShare,
+      id: randomUUID(),
+      shareToken: insertShare.shareToken || randomUUID().replace(/-/g, ''),
+      createdAt: new Date(),
+    };
+    this.shares.set(share.id, share);
+    return share;
+  }
+
+  async deleteShare(id: string): Promise<boolean> {
+    return this.shares.delete(id);
+  }
+
+  // Tool runs implementation
+  async getToolRuns(): Promise<ToolRun[]> {
+    return Array.from(this.toolRuns.values())
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getToolRunsByType(type: string): Promise<ToolRun[]> {
+    return Array.from(this.toolRuns.values())
+      .filter(toolRun => toolRun.type === type)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async createToolRun(insertToolRun: InsertToolRun): Promise<ToolRun> {
+    const toolRun: ToolRun = {
+      ...insertToolRun,
+      id: randomUUID(),
+      input: { ...insertToolRun.input },
+      output: { ...insertToolRun.output },
+      createdAt: new Date(),
+    };
+    this.toolRuns.set(toolRun.id, toolRun);
+    return toolRun;
+  }
+
+  async deleteToolRun(id: string): Promise<boolean> {
+    return this.toolRuns.delete(id);
   }
 }
 

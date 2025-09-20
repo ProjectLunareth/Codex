@@ -5,6 +5,9 @@ import EntryModal from "@/components/codex/entry-modal";
 import OracleModal from "@/components/codex/oracle-modal";
 import SigilGenerator from "@/components/sigil/sigil-generator";
 import SonicEchoGenerator from "@/components/sonic/sonic-echo-generator";
+import CodexGraph from "@/components/codex/codex-graph";
+import CollectionManager from "@/components/codex/collection-manager";
+import ToolRunner from "@/components/tools/tool-runner";
 import { useCodex } from "@/hooks/use-codex";
 import { type CodexEntryWithBookmark } from "@shared/schema";
 
@@ -13,6 +16,9 @@ export default function Home() {
   const [isOracleOpen, setIsOracleOpen] = useState(false);
   const [isSigilGeneratorOpen, setIsSigilGeneratorOpen] = useState(false);
   const [isSonicEchoGeneratorOpen, setIsSonicEchoGeneratorOpen] = useState(false);
+  const [isGraphOpen, setIsGraphOpen] = useState(false);
+  const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -59,6 +65,30 @@ export default function Home() {
     setIsSonicEchoGeneratorOpen(false);
   };
 
+  const openGraph = () => {
+    setIsGraphOpen(true);
+  };
+
+  const closeGraph = () => {
+    setIsGraphOpen(false);
+  };
+
+  const openCollections = () => {
+    setIsCollectionsOpen(true);
+  };
+
+  const closeCollections = () => {
+    setIsCollectionsOpen(false);
+  };
+
+  const openTools = () => {
+    setIsToolsOpen(true);
+  };
+
+  const closeTools = () => {
+    setIsToolsOpen(false);
+  };
+
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
@@ -75,6 +105,9 @@ export default function Home() {
         onOracleClick={openOracle}
         onSigilClick={openSigilGenerator}
         onSonicEchoClick={openSonicEchoGenerator}
+        onGraphClick={openGraph}
+        onCollectionsClick={openCollections}
+        onToolsClick={openTools}
         isCollapsed={isSidebarCollapsed}
         onToggleCollapse={toggleSidebar}
         entryCounts={{
@@ -122,6 +155,26 @@ export default function Home() {
       <SonicEchoGenerator
         isOpen={isSonicEchoGeneratorOpen}
         onClose={closeSonicEchoGenerator}
+      />
+
+      {isGraphOpen && (
+        <CodexGraph
+          onEntryClick={(entry) => {
+            setSelectedEntry(entry);
+            setIsGraphOpen(false);
+          }}
+          onClose={closeGraph}
+        />
+      )}
+
+      <CollectionManager
+        isOpen={isCollectionsOpen}
+        onClose={closeCollections}
+      />
+
+      <ToolRunner
+        isOpen={isToolsOpen}
+        onClose={closeTools}
       />
     </div>
   );

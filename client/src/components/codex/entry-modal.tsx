@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
-import { X, Star, FileText, Calendar, ExternalLink } from "lucide-react";
+import { X, Star, FileText, Calendar, ExternalLink, MessageSquare, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useQuery } from "@tanstack/react-query";
 import { useBookmarks } from "@/hooks/use-bookmarks";
+import EntryAnnotations from "@/components/codex/entry-annotations";
+import EntrySharing from "@/components/codex/entry-sharing";
 import { type CodexEntryWithBookmark, type CodexEntry } from "@shared/schema";
 
 interface EntryModalProps {
@@ -19,7 +23,7 @@ export default function EntryModal({ entry, isOpen, onClose }: EntryModalProps) 
 
   // Fetch cross-references
   const { data: crossReferences = [] } = useQuery<CodexEntry[]>({
-    queryKey: ["/api/codex/entries", entry.id, "cross-references"],
+    queryKey: [`/api/codex/entries/${entry.id}/cross-references`],
     enabled: isOpen,
   });
 
@@ -39,11 +43,6 @@ export default function EntryModal({ entry, isOpen, onClose }: EntryModalProps) 
     updateNotes(entry.id, personalNotes);
   };
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
 
   const formatFileSize = (bytes: number) => {
     if (bytes < 1024) return `${bytes} B`;
@@ -73,22 +72,19 @@ export default function EntryModal({ entry, isOpen, onClose }: EntryModalProps) 
     return categoryMap[category] || category;
   };
 
-  if (!isOpen) return null;
-
   const entryTitle = entry.summary.split('\n')[0]
     .replace('Beginning: The Codex of Hidden Knowing', '')
     .replace(/^[^:]*:\s*/, '')
     .trim();
 
   return (
-    <div 
-      className="fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4"
-      onClick={handleBackdropClick}
-      data-testid="modal-entry"
-    >
-      <div className="mystical-border mystical-glow rounded-lg max-w-4xl max-h-[90vh] w-full overflow-y-auto">
-        <header className="sticky top-0 mystical-border border-l-0 border-r-0 border-t-0 p-6 flex items-center justify-between bg-card/95 backdrop-blur-sm">
-          <div className="flex items-center space-x-4">
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent 
+        className="mystical-border mystical-glow max-w-4xl max-h-[90vh] overflow-y-auto"
+        data-testid="modal-entry"
+      >
+        <DialogHeader className="sticky top-0 mystical-border border-l-0 border-r-0 border-t-0 pb-6 flex items-center justify-between bg-card/95 backdrop-blur-sm">
+          <div className="flex items-center space-x-4 flex-1">
             <Badge className="category-badge" data-testid="text-modal-category">
               {getCategoryDisplayName(entry.category)}
             </Badge>
@@ -104,21 +100,12 @@ export default function EntryModal({ entry, isOpen, onClose }: EntryModalProps) 
               <Star className={`h-5 w-5 ${entry.bookmark?.isBookmarked ? 'fill-current' : ''}`} />
             </Button>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="text-muted-foreground hover:text-foreground text-xl"
-            data-testid="button-close-modal"
-          >
-            <X className="h-5 w-5" />
-          </Button>
-        </header>
+        </DialogHeader>
 
-        <div className="p-6">
-          <h1 className="font-cinzel text-2xl font-bold text-primary mb-4" data-testid="text-modal-title">
+        <div className="space-y-6">
+          <DialogTitle className="font-cinzel text-2xl font-bold text-primary" data-testid="text-modal-title">
             {entryTitle}
-          </h1>
+          </DialogTitle>
 
           <div className="flex items-center space-x-6 text-sm text-muted-foreground mb-6">
             <span className="flex items-center" data-testid="text-modal-size">
@@ -134,115 +121,142 @@ export default function EntryModal({ entry, isOpen, onClose }: EntryModalProps) 
 
           <div className="divider mb-6"></div>
 
-          {/* Summary Section */}
-          <section className="mb-8">
-            <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Summary</h3>
-            <div className="prose prose-amber max-w-none text-foreground leading-relaxed" data-testid="text-modal-summary">
-              {entry.summary.split('\n').slice(1).map((line, index) => (
-                <p key={index} className="mb-2">{line}</p>
-              ))}
-            </div>
-          </section>
+          <Tabs defaultValue="content" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="content" data-testid="tab-entry-content">
+                <FileText className="h-4 w-4 mr-2" />
+                Content
+              </TabsTrigger>
+              <TabsTrigger value="annotations" data-testid="tab-entry-annotations">
+                <MessageSquare className="h-4 w-4 mr-2" />
+                Annotations
+              </TabsTrigger>
+              <TabsTrigger value="sharing" data-testid="tab-entry-sharing">
+                <Share2 className="h-4 w-4 mr-2" />
+                Sharing
+              </TabsTrigger>
+            </TabsList>
 
-          {/* Key Chunks Section */}
-          {entry.keyChunks && entry.keyChunks.length > 0 && (
-            <section className="mb-8">
-              <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Key Passages</h3>
-              <div className="space-y-4" data-testid="section-key-chunks">
-                {entry.keyChunks.slice(0, 3).map((chunk, index) => (
-                  <div key={index} className="mystical-border rounded-lg p-4">
-                    <p className="text-foreground leading-relaxed italic text-sm">
-                      "{chunk.substring(0, 500)}{chunk.length > 500 ? '...' : ''}"
-                    </p>
+            <TabsContent value="content" className="mt-6">
+              {/* Summary Section */}
+              <section className="mb-8">
+                <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Summary</h3>
+                <div className="prose prose-amber max-w-none text-foreground leading-relaxed" data-testid="text-modal-summary">
+                  {entry.summary.split('\n').slice(1).map((line, index) => (
+                    <p key={index} className="mb-2">{line}</p>
+                  ))}
+                </div>
+              </section>
+
+              {/* Key Chunks Section */}
+              {entry.keyChunks && entry.keyChunks.length > 0 && (
+                <section className="mb-8">
+                  <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Key Passages</h3>
+                  <div className="space-y-4" data-testid="section-key-chunks">
+                    {entry.keyChunks.slice(0, 3).map((chunk, index) => (
+                      <div key={index} className="mystical-border rounded-lg p-4">
+                        <p className="text-foreground leading-relaxed italic text-sm">
+                          "{chunk.substring(0, 500)}{chunk.length > 500 ? '...' : ''}"
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </section>
-          )}
+                </section>
+              )}
 
-          {/* Cross-References Section */}
-          {crossReferences.length > 0 && (
-            <section className="mb-8">
-              <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Cross-References</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="section-cross-refs">
-                {crossReferences.map((ref) => (
-                  <div 
-                    key={ref.id} 
-                    className="mystical-border rounded-lg p-4 cursor-pointer hover:border-ring/50 transition-colors"
-                    data-testid={`cross-ref-${ref.id}`}
-                  >
-                    <h4 className="font-cinzel font-semibold text-accent mb-2">
-                      {ref.summary.split('\n')[0].replace('Beginning: The Codex of Hidden Knowing', '').replace(/^[^:]*:\s*/, '').trim()}
-                    </h4>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      {getCategoryDisplayName(ref.category)} • {ref.filename}
-                    </p>
-                    <p className="text-sm">
-                      {ref.summary.split('\n').slice(1, 2).join(' ').substring(0, 150)}...
-                    </p>
+              {/* Cross-References Section */}
+              {crossReferences.length > 0 && (
+                <section className="mb-8">
+                  <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Cross-References</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="section-cross-refs">
+                    {crossReferences.map((ref) => (
+                      <div 
+                        key={ref.id} 
+                        className="mystical-border rounded-lg p-4 cursor-pointer hover:border-ring/50 transition-colors"
+                        data-testid={`cross-ref-${ref.id}`}
+                      >
+                        <h4 className="font-cinzel font-semibold text-accent mb-2">
+                          {ref.summary.split('\n')[0].replace('Beginning: The Codex of Hidden Knowing', '').replace(/^[^:]*:\s*/, '').trim()}
+                        </h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          {getCategoryDisplayName(ref.category)} • {ref.filename}
+                        </p>
+                        <p className="text-sm">
+                          {ref.summary.split('\n').slice(1, 2).join(' ').substring(0, 150)}...
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </section>
-          )}
+                </section>
+              )}
 
-          {/* Personal Notes Section */}
-          <section className="mb-8">
-            <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Personal Notes</h3>
-            <div className="mystical-border rounded-lg p-4">
-              <Textarea
-                value={personalNotes}
-                onChange={(e) => setPersonalNotes(e.target.value)}
-                className="w-full bg-transparent border-0 resize-none text-foreground placeholder:text-muted-foreground focus:ring-0 focus:outline-0"
-                placeholder="Add your personal insights and notes..."
-                rows={4}
-                data-testid="textarea-notes"
-              />
-              <div className="flex justify-end mt-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleSaveNotes}
-                  className="text-xs text-accent hover:text-primary transition-colors"
-                  data-testid="button-save-notes"
-                >
-                  <FileText className="h-3 w-3 mr-1" />
-                  Save Notes
-                </Button>
-              </div>
-            </div>
-          </section>
+              {/* Personal Notes Section */}
+              <section className="mb-8">
+                <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Personal Notes</h3>
+                <div className="mystical-border rounded-lg p-4">
+                  <Textarea
+                    value={personalNotes}
+                    onChange={(e) => setPersonalNotes(e.target.value)}
+                    className="w-full bg-transparent border-0 resize-none text-foreground placeholder:text-muted-foreground focus:ring-0 focus:outline-0"
+                    placeholder="Add your personal insights and notes..."
+                    rows={4}
+                    data-testid="textarea-notes"
+                  />
+                  <div className="flex justify-end mt-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleSaveNotes}
+                      className="text-xs text-accent hover:text-primary transition-colors"
+                      data-testid="button-save-notes"
+                    >
+                      <FileText className="h-3 w-3 mr-1" />
+                      Save Notes
+                    </Button>
+                  </div>
+                </div>
+              </section>
 
-          {/* Key Terms Section */}
-          {entry.keyTerms && entry.keyTerms.length > 0 && (
-            <section className="mb-8">
-              <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Key Terms</h3>
-              <div className="flex flex-wrap gap-2" data-testid="section-key-terms">
-                {entry.keyTerms.map((term, index) => (
-                  <Badge 
-                    key={index} 
-                    variant="outline" 
-                    className="category-badge cursor-pointer hover:bg-accent/20"
-                    data-testid={`term-${index}`}
-                  >
-                    {term}
-                  </Badge>
-                ))}
-              </div>
-            </section>
-          )}
+              {/* Key Terms Section */}
+              {entry.keyTerms && entry.keyTerms.length > 0 && (
+                <section className="mb-8">
+                  <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Key Terms</h3>
+                  <div className="flex flex-wrap gap-2" data-testid="section-key-terms">
+                    {entry.keyTerms.map((term, index) => (
+                      <Badge 
+                        key={index} 
+                        variant="outline" 
+                        className="category-badge cursor-pointer hover:bg-accent/20"
+                        data-testid={`term-${index}`}
+                      >
+                        {term}
+                      </Badge>
+                    ))}
+                  </div>
+                </section>
+              )}
 
-          {/* Full Text Section */}
-          <section>
-            <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Full Text</h3>
-            <div className="mystical-border rounded-lg p-6 prose prose-amber max-w-none text-foreground leading-relaxed" data-testid="text-modal-full">
-              <div className="whitespace-pre-wrap text-sm">
-                {entry.fullText}
-              </div>
-            </div>
-          </section>
+              {/* Full Text Section */}
+              <section>
+                <h3 className="font-cinzel text-lg font-semibold text-primary mb-3">Full Text</h3>
+                <div className="mystical-border rounded-lg p-6 prose prose-amber max-w-none text-foreground leading-relaxed" data-testid="text-modal-full">
+                  <div className="whitespace-pre-wrap text-sm">
+                    {entry.fullText}
+                  </div>
+                </div>
+              </section>
+            </TabsContent>
+
+            <TabsContent value="annotations" className="mt-6">
+              <EntryAnnotations entryId={entry.id} entryTitle={entryTitle} />
+            </TabsContent>
+
+            <TabsContent value="sharing" className="mt-6">
+              <EntrySharing entryId={entry.id} entryTitle={entryTitle} />
+            </TabsContent>
+          </Tabs>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

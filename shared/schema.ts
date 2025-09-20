@@ -64,12 +64,54 @@ export const sonicEchoes = pgTable("sonic_echoes", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+// Collections (for organizing and exporting codex entries)
+export const collections = pgTable("collections", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  entryIds: jsonb("entry_ids").$type<string[]>().notNull().default([]),
+  notes: text("notes"),
+  isPublic: boolean("is_public").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Annotations (collaborative notes on entries)
+export const annotations = pgTable("annotations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  entryId: varchar("entry_id").notNull().references(() => codexEntries.id),
+  content: text("content").notNull(),
+  authorName: text("author_name").notNull(),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+// Shares (for sharing entries and collections via tokens)
+export const shares = pgTable("shares", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  targetType: text("target_type").notNull(), // 'entry', 'collection'
+  targetId: varchar("target_id").notNull(),
+  shareToken: varchar("share_token").notNull().unique(),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+// Tool runs (history of mystical tool usage)
+export const toolRuns = pgTable("tool_runs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  type: text("type").notNull(), // 'scrying', 'praxis', 'chronicle', etc.
+  input: jsonb("input").notNull(), // Tool-specific input parameters
+  output: jsonb("output").notNull(), // Tool-specific output data
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
 // Insert schemas
 export const insertCodexEntrySchema = createInsertSchema(codexEntries);
 export const insertBookmarkSchema = createInsertSchema(bookmarks).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertOracleConsultationSchema = createInsertSchema(oracleConsultations).omit({ id: true, createdAt: true });
 export const insertGrimoireEntrySchema = createInsertSchema(grimoireEntries).omit({ id: true, createdAt: true, updatedAt: true });
 export const insertSonicEchoSchema = createInsertSchema(sonicEchoes).omit({ id: true, createdAt: true });
+export const insertCollectionSchema = createInsertSchema(collections).omit({ id: true, createdAt: true, updatedAt: true });
+export const insertAnnotationSchema = createInsertSchema(annotations).omit({ id: true, createdAt: true });
+export const insertShareSchema = createInsertSchema(shares).omit({ id: true, createdAt: true });
+export const insertToolRunSchema = createInsertSchema(toolRuns).omit({ id: true, createdAt: true });
 
 // Types
 export type CodexEntry = typeof codexEntries.$inferSelect;
@@ -77,11 +119,19 @@ export type Bookmark = typeof bookmarks.$inferSelect;
 export type OracleConsultation = typeof oracleConsultations.$inferSelect;
 export type GrimoireEntry = typeof grimoireEntries.$inferSelect;
 export type SonicEcho = typeof sonicEchoes.$inferSelect;
+export type Collection = typeof collections.$inferSelect;
+export type Annotation = typeof annotations.$inferSelect;
+export type Share = typeof shares.$inferSelect;
+export type ToolRun = typeof toolRuns.$inferSelect;
 export type InsertCodexEntry = z.infer<typeof insertCodexEntrySchema>;
 export type InsertBookmark = z.infer<typeof insertBookmarkSchema>;
 export type InsertOracleConsultation = z.infer<typeof insertOracleConsultationSchema>;
 export type InsertGrimoireEntry = z.infer<typeof insertGrimoireEntrySchema>;
 export type InsertSonicEcho = z.infer<typeof insertSonicEchoSchema>;
+export type InsertCollection = z.infer<typeof insertCollectionSchema>;
+export type InsertAnnotation = z.infer<typeof insertAnnotationSchema>;
+export type InsertShare = z.infer<typeof insertShareSchema>;
+export type InsertToolRun = z.infer<typeof insertToolRunSchema>;
 
 // Additional types for API responses
 export type CodexEntryWithBookmark = CodexEntry & {
@@ -138,4 +188,67 @@ export type SonicEchoResponse = {
   duration?: number;
   voice: string;
   style?: string;
+};
+
+// Collection types
+export type CollectionWithEntries = Collection & {
+  entries: CodexEntry[];
+};
+
+export type ExportFormat = 'json' | 'markdown';
+
+// Annotation types
+export type AnnotationWithEntry = Annotation & {
+  entry?: CodexEntry;
+};
+
+// Share types
+export type ShareRequest = {
+  targetType: 'entry' | 'collection';
+  targetId: string;
+};
+
+export type ShareResponse = {
+  shareToken: string;
+  shareUrl: string;
+};
+
+// Mystical tools types
+export type MysticalToolType = 
+  | 'scrying' | 'praxis' | 'chronicle' | 'glyph' | 'tapestry'
+  | 'synthesis' | 'key' | 'imprint' | 'tarot' | 'star'
+  | 'architecture' | 'aether' | 'geometrics' | 'harmonics' | 'labyrinth'
+  | 'exegesis' | 'orrery' | 'athanor' | 'legend' | 'noosphere' | 'fusion' | 'dialogue';
+
+export type MysticalToolRequest = {
+  type: MysticalToolType;
+  input: Record<string, any>;
+};
+
+export type MysticalToolResponse = {
+  id: string;
+  type: MysticalToolType;
+  output: Record<string, any>;
+  createdAt: Date;
+};
+
+// Graph visualization types
+export type GraphNode = {
+  id: string;
+  title: string;
+  category: string;
+  x: number;
+  y: number;
+  keyTerms: string[];
+};
+
+export type GraphEdge = {
+  source: string;
+  target: string;
+  similarity: number;
+};
+
+export type GraphData = {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
 };
