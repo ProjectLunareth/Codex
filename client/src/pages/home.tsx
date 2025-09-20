@@ -8,6 +8,11 @@ import SonicEchoGenerator from "@/components/sonic/sonic-echo-generator";
 import CodexGraph from "@/components/codex/codex-graph";
 import CollectionManager from "@/components/codex/collection-manager";
 import ToolRunner from "@/components/tools/tool-runner";
+import GrimoireViewer from "@/components/python-tools/grimoire-viewer";
+import LunarethSync from "@/components/python-tools/lunareth-sync";
+import SacredGeometry from "@/components/python-tools/sacred-geometry";
+import MysticalToolsClient from "@/components/python-tools/mystical-tools-client";
+import IntegrationBridge from "@/components/python-tools/integration-bridge";
 import { useCodex } from "@/hooks/use-codex";
 import { type CodexEntryWithBookmark } from "@shared/schema";
 
@@ -19,6 +24,11 @@ export default function Home() {
   const [isGraphOpen, setIsGraphOpen] = useState(false);
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [isGrimoireViewerOpen, setIsGrimoireViewerOpen] = useState(false);
+  const [isLunarethSyncOpen, setIsLunarethSyncOpen] = useState(false);
+  const [isSacredGeometryOpen, setIsSacredGeometryOpen] = useState(false);
+  const [isMysticalToolsClientOpen, setIsMysticalToolsClientOpen] = useState(false);
+  const [isIntegrationBridgeOpen, setIsIntegrationBridgeOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -94,34 +104,44 @@ export default function Home() {
   };
 
   // Python Tools handlers
-  const handleGrimoireViewer = () => {
-    console.log("Opening Grimoire Viewer...");
-    // TODO: Implement Python terminal interface for browsing codex entries
-    alert("Grimoire Viewer: Interactive terminal interface for browsing codex entries will be implemented here.");
+  const openGrimoireViewer = () => {
+    setIsGrimoireViewerOpen(true);
   };
 
-  const handleLunarethSync = () => {
-    console.log("Opening Lunareth Synchronization...");
-    // TODO: Implement 13+1 phase mapping with sacred mathematics
-    alert("Lunareth Synchronization: 13+1 phase mapping with sacred mathematics will be implemented here.");
+  const closeGrimoireViewer = () => {
+    setIsGrimoireViewerOpen(false);
   };
 
-  const handleSacredGeometry = () => {
-    console.log("Opening Sacred Geometry...");
-    // TODO: Implement Scribe's Geometricum - mathematical patterns, L-systems, fractals
-    alert("Sacred Geometry: Scribe's Geometricum for mathematical patterns, L-systems, and fractals will be implemented here.");
+  const openLunarethSync = () => {
+    setIsLunarethSyncOpen(true);
   };
 
-  const handleMysticalToolsClient = () => {
-    console.log("Opening Mystical Tools Client...");
-    // TODO: Implement Python access to Oracle, Sigil Generator, Sonic Echo
-    alert("Mystical Tools Client: Python access to Oracle, Sigil Generator, and Sonic Echo will be implemented here.");
+  const closeLunarethSync = () => {
+    setIsLunarethSyncOpen(false);
   };
 
-  const handleIntegrationBridge = () => {
-    console.log("Opening Integration Bridge...");
-    // TODO: Implement bidirectional data exchange between React and Python
-    alert("Integration Bridge: Bidirectional data exchange between React and Python will be implemented here.");
+  const openSacredGeometry = () => {
+    setIsSacredGeometryOpen(true);
+  };
+
+  const closeSacredGeometry = () => {
+    setIsSacredGeometryOpen(false);
+  };
+
+  const openMysticalToolsClient = () => {
+    setIsMysticalToolsClientOpen(true);
+  };
+
+  const closeMysticalToolsClient = () => {
+    setIsMysticalToolsClientOpen(false);
+  };
+
+  const openIntegrationBridge = () => {
+    setIsIntegrationBridgeOpen(true);
+  };
+
+  const closeIntegrationBridge = () => {
+    setIsIntegrationBridgeOpen(false);
   };
 
   return (
@@ -139,11 +159,11 @@ export default function Home() {
         onGraphClick={openGraph}
         onCollectionsClick={openCollections}
         onToolsClick={openTools}
-        onGrimoireViewerClick={handleGrimoireViewer}
-        onLunarethSyncClick={handleLunarethSync}
-        onSacredGeometryClick={handleSacredGeometry}
-        onMysticalToolsClientClick={handleMysticalToolsClient}
-        onIntegrationBridgeClick={handleIntegrationBridge}
+        onGrimoireViewerClick={openGrimoireViewer}
+        onLunarethSyncClick={openLunarethSync}
+        onSacredGeometryClick={openSacredGeometry}
+        onMysticalToolsClientClick={openMysticalToolsClient}
+        onIntegrationBridgeClick={openIntegrationBridge}
         isCollapsed={isSidebarCollapsed}
         onToggleCollapse={toggleSidebar}
         entryCounts={{
@@ -211,6 +231,32 @@ export default function Home() {
       <ToolRunner
         isOpen={isToolsOpen}
         onClose={closeTools}
+      />
+
+      {/* Python Tools Components */}
+      <GrimoireViewer
+        isOpen={isGrimoireViewerOpen}
+        onClose={closeGrimoireViewer}
+      />
+
+      <LunarethSync
+        isOpen={isLunarethSyncOpen}
+        onClose={closeLunarethSync}
+      />
+
+      <SacredGeometry
+        isOpen={isSacredGeometryOpen}
+        onClose={closeSacredGeometry}
+      />
+
+      <MysticalToolsClient
+        isOpen={isMysticalToolsClientOpen}
+        onClose={closeMysticalToolsClient}
+      />
+
+      <IntegrationBridge
+        isOpen={isIntegrationBridgeOpen}
+        onClose={closeIntegrationBridge}
       />
     </div>
   );

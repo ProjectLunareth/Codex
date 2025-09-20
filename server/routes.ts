@@ -1,5 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import { spawn } from "child_process";
+import path from "path";
 import { storage } from "./storage";
 import { codexService } from "./services/codex";
 import { consultOracle, generateMysticalSigil, generateSonicEcho, processMysticalTool } from "./services/openai";
@@ -822,6 +824,253 @@ export async function registerRoutes(app: Express): Promise<Server> {
         bridge_health: { status: 'error', error: error instanceof Error ? error.message : 'Unknown error' },
         timestamp: new Date().toISOString()
       });
+    }
+  });
+
+  // ===== PYTHON TOOLS ENDPOINTS =====
+  
+  // Helper function to execute Python scripts through mystical_main.py
+  const executePythonScript = async (command: string, args: string[] = []): Promise<any> => {
+    
+    return new Promise((resolve, reject) => {
+      const fullScriptPath = path.join(process.cwd(), 'mystical_python', 'mystical_main.py');
+      const allArgs = [command, ...args];
+      const python = spawn('python3', [fullScriptPath, ...allArgs], {
+        cwd: path.join(process.cwd(), 'mystical_python'),
+        env: { ...process.env, PYTHONPATH: path.join(process.cwd(), 'mystical_python') }
+      });
+      
+      let stdout = '';
+      let stderr = '';
+      
+      python.stdout.on('data', (data: Buffer) => {
+        stdout += data.toString();
+      });
+      
+      python.stderr.on('data', (data: Buffer) => {
+        stderr += data.toString();
+      });
+      
+      python.on('close', (code: number) => {
+        if (code === 0) {
+          try {
+            // Try to parse as JSON, fall back to raw text
+            const result = JSON.parse(stdout);
+            resolve(result);
+          } catch (e) {
+            resolve({ output: stdout, raw: true });
+          }
+        } else {
+          reject(new Error(`Python script failed with code ${code}: ${stderr}`));
+        }
+      });
+      
+      python.on('error', (error: Error) => {
+        reject(error);
+      });
+    });
+  };
+
+  // Grimoire Viewer endpoints
+  app.get("/api/python/grimoire-viewer/status", async (req, res) => {
+    try {
+      const result = await executePythonScript('grimoire', ['--offline']);
+      res.json(result);
+    } catch (error) {
+      console.error("Grimoire Viewer status error:", error);
+      res.status(500).json({ message: "Failed to get Grimoire Viewer status" });
+    }
+  });
+
+  app.post("/api/python/grimoire-viewer/browse", async (req, res) => {
+    try {
+      const result = await executePythonScript('grimoire', ['--offline']);
+      res.json(result);
+    } catch (error) {
+      console.error("Grimoire Viewer browse error:", error);
+      res.status(500).json({ message: "Failed to browse entries" });
+    }
+  });
+
+  app.get("/api/python/grimoire-viewer/entry/:id", async (req, res) => {
+    try {
+      const result = await executePythonScript('grimoire', ['--offline']);
+      res.json(result);
+    } catch (error) {
+      console.error("Grimoire Viewer entry error:", error);
+      res.status(500).json({ message: "Failed to get entry details" });
+    }
+  });
+
+  // Lunareth Synchronization endpoints
+  app.get("/api/python/lunareth-sync/phases", async (req, res) => {
+    try {
+      const result = await executePythonScript('lunareth', []);
+      res.json(result);
+    } catch (error) {
+      console.error("Lunareth Sync phases error:", error);
+      res.status(500).json({ message: "Failed to get spiral phases" });
+    }
+  });
+
+  app.post("/api/python/lunareth-sync/set-phase", async (req, res) => {
+    try {
+      const { phaseId } = req.body;
+      const result = await executePythonScript('lunareth', ['--phase', phaseId.toString()]);
+      res.json(result);
+    } catch (error) {
+      console.error("Lunareth Sync set phase error:", error);
+      res.status(500).json({ message: "Failed to set spiral phase" });
+    }
+  });
+
+  app.get("/api/python/lunareth-sync/current-state", async (req, res) => {
+    try {
+      const result = await executePythonScript('lunareth', []);
+      res.json(result);
+    } catch (error) {
+      console.error("Lunareth Sync state error:", error);
+      res.status(500).json({ message: "Failed to get synchronization state" });
+    }
+  });
+
+  app.post("/api/python/lunareth-sync/animate", async (req, res) => {
+    try {
+      const { fromPhase, toPhase } = req.body;
+      const result = await executePythonScript('lunareth', ['--phase', fromPhase.toString()]);
+      res.json(result);
+    } catch (error) {
+      console.error("Lunareth Sync animation error:", error);
+      res.status(500).json({ message: "Failed to generate animation" });
+    }
+  });
+
+  // Sacred Geometry endpoints
+  app.get("/api/python/sacred-geometry/patterns", async (req, res) => {
+    try {
+      const result = await executePythonScript('geometry', []);
+      res.json(result);
+    } catch (error) {
+      console.error("Sacred Geometry patterns error:", error);
+      res.status(500).json({ message: "Failed to get pattern list" });
+    }
+  });
+
+  app.post("/api/python/sacred-geometry/generate", async (req, res) => {
+    try {
+      const { patternType, width = 800 } = req.body;
+      const result = await executePythonScript('geometry', [
+        '--pattern', patternType || 'golden_spiral',
+        '--size', width.toString()
+      ]);
+      res.json(result);
+    } catch (error) {
+      console.error("Sacred Geometry generation error:", error);
+      res.status(500).json({ message: "Failed to generate pattern" });
+    }
+  });
+
+  app.post("/api/python/sacred-geometry/l-system", async (req, res) => {
+    try {
+      const result = await executePythonScript('geometry', [
+        '--pattern', 'fractal_tree'
+      ]);
+      res.json(result);
+    } catch (error) {
+      console.error("Sacred Geometry L-system error:", error);
+      res.status(500).json({ message: "Failed to generate L-system" });
+    }
+  });
+
+  // Mystical Tools Client endpoints
+  app.post("/api/python/mystical-tools/oracle", async (req, res) => {
+    try {
+      const { query, context = 'general' } = req.body;
+      const result = await executePythonScript('tools', [
+        '--oracle', query,
+        '--context', context
+      ]);
+      res.json(result);
+    } catch (error) {
+      console.error("Mystical Tools Oracle error:", error);
+      res.status(500).json({ message: "Failed to consult Oracle through Python" });
+    }
+  });
+
+  app.post("/api/python/mystical-tools/sigil", async (req, res) => {
+    try {
+      const { intention } = req.body;
+      const result = await executePythonScript('tools', [
+        '--sigil', intention
+      ]);
+      res.json(result);
+    } catch (error) {
+      console.error("Mystical Tools Sigil error:", error);
+      res.status(500).json({ message: "Failed to generate Sigil through Python" });
+    }
+  });
+
+  app.post("/api/python/mystical-tools/sonic-echo", async (req, res) => {
+    try {
+      const { text } = req.body;
+      const result = await executePythonScript('tools', [
+        '--sonic', text
+      ]);
+      res.json(result);
+    } catch (error) {
+      console.error("Mystical Tools Sonic Echo error:", error);
+      res.status(500).json({ message: "Failed to generate Sonic Echo through Python" });
+    }
+  });
+
+  app.get("/api/python/mystical-tools/session", async (req, res) => {
+    try {
+      const result = await executePythonScript('tools', ['--offline']);
+      res.json(result);
+    } catch (error) {
+      console.error("Mystical Tools session error:", error);
+      res.status(500).json({ message: "Failed to get tool session info" });
+    }
+  });
+
+  // Integration Bridge endpoints
+  app.get("/api/python/integration-bridge/status", async (req, res) => {
+    try {
+      const result = await executePythonScript('bridge', []);
+      res.json(result);
+    } catch (error) {
+      console.error("Integration Bridge status error:", error);
+      res.status(500).json({ message: "Failed to get bridge status" });
+    }
+  });
+
+  app.post("/api/python/integration-bridge/sync", async (req, res) => {
+    try {
+      const result = await executePythonScript('bridge', []);
+      res.json(result);
+    } catch (error) {
+      console.error("Integration Bridge sync error:", error);
+      res.status(500).json({ message: "Failed to synchronize data" });
+    }
+  });
+
+  app.post("/api/python/integration-bridge/export", async (req, res) => {
+    try {
+      const result = await executePythonScript('bridge', []);
+      res.json(result);
+    } catch (error) {
+      console.error("Integration Bridge export error:", error);
+      res.status(500).json({ message: "Failed to export data" });
+    }
+  });
+
+  app.get("/api/python/integration-bridge/metrics", async (req, res) => {
+    try {
+      const result = await executePythonScript('bridge', []);
+      res.json(result);
+    } catch (error) {
+      console.error("Integration Bridge metrics error:", error);
+      res.status(500).json({ message: "Failed to get bridge metrics" });
     }
   });
 

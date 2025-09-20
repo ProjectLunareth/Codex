@@ -1,0 +1,2142 @@
+{
+  "metadata": {
+    "generated_at": "2025-09-20T09:30:09.346818",
+    "lunareth_version": "1.0",
+    "total_phases": 14,
+    "current_phase": 0,
+    "last_sync": null
+  },
+  "phases": [
+    {
+      "id": 0,
+      "name": "The Void Nexus",
+      "description": "The primordial stillness before manifestation begins",
+      "keywords": [
+        "void",
+        "stillness",
+        "potential",
+        "beginning",
+        "silence"
+      ],
+      "animationParams": {
+        "rotation": 0.0,
+        "scale": 0.1,
+        "opacity": 0.2,
+        "color_hue": 0,
+        "frequency": 0.5,
+        "amplitude": 0.1,
+        "phase_offset": 0.0
+      },
+      "energySignature": "\u2205",
+      "geometricPattern": "point",
+      "color": "#000000",
+      "frequency": 0.5
+    },
+    {
+      "id": 1,
+      "name": "Prima Emanatio",
+      "description": "The first stirring of consciousness from the void",
+      "keywords": [
+        "emanation",
+        "consciousness",
+        "awakening",
+        "first",
+        "light"
+      ],
+      "animationParams": {
+        "rotation": 30.0,
+        "scale": 0.3,
+        "opacity": 0.4,
+        "color_hue": 15,
+        "frequency": 1.0,
+        "amplitude": 0.3,
+        "phase_offset": 0.0833
+      },
+      "energySignature": "\u2609",
+      "geometricPattern": "circle",
+      "color": "#FFD700",
+      "frequency": 1.0
+    },
+    {
+      "id": 2,
+      "name": "Duality Genesis",
+      "description": "The birth of polarity and the sacred division",
+      "keywords": [
+        "duality",
+        "polarity",
+        "division",
+        "yang",
+        "yin"
+      ],
+      "animationParams": {
+        "rotation": 60.0,
+        "scale": 0.5,
+        "opacity": 0.6,
+        "color_hue": 30,
+        "frequency": 1.5,
+        "amplitude": 0.5,
+        "phase_offset": 0.1667
+      },
+      "energySignature": "\u262f",
+      "geometricPattern": "vesica_piscis",
+      "color": "#FF6B35",
+      "frequency": 1.5
+    },
+    {
+      "id": 3,
+      "name": "Trinity Formation",
+      "description": "The stabilization through three-fold manifestation",
+      "keywords": [
+        "trinity",
+        "stability",
+        "triangle",
+        "three",
+        "foundation"
+      ],
+      "animationParams": {
+        "rotation": 120.0,
+        "scale": 0.7,
+        "opacity": 0.7,
+        "color_hue": 60,
+        "frequency": 2.0,
+        "amplitude": 0.7,
+        "phase_offset": 0.25
+      },
+      "energySignature": "\u25b3",
+      "geometricPattern": "triangle",
+      "color": "#FFC107",
+      "frequency": 2.0
+    },
+    {
+      "id": 4,
+      "name": "Quaternary Foundation",
+      "description": "The establishment of the four-fold material base",
+      "keywords": [
+        "quaternary",
+        "foundation",
+        "square",
+        "earth",
+        "material"
+      ],
+      "animationParams": {
+        "rotation": 90.0,
+        "scale": 0.8,
+        "opacity": 0.8,
+        "color_hue": 90,
+        "frequency": 2.5,
+        "amplitude": 0.8,
+        "phase_offset": 0.3333
+      },
+      "energySignature": "\u25a1",
+      "geometricPattern": "square",
+      "color": "#4CAF50",
+      "frequency": 2.5
+    },
+    {
+      "id": 5,
+      "name": "Pentadic Harmony",
+      "description": "The golden mean and perfect proportion emerge",
+      "keywords": [
+        "pentagon",
+        "golden",
+        "harmony",
+        "proportion",
+        "phi"
+      ],
+      "animationParams": {
+        "rotation": 72.0,
+        "scale": 0.8090169943749475,
+        "opacity": 0.85,
+        "color_hue": 120,
+        "frequency": 1.618033988749895,
+        "amplitude": 0.8090169943749475,
+        "phase_offset": 0.4167
+      },
+      "energySignature": "\u2b1f",
+      "geometricPattern": "pentagon",
+      "color": "#2196F3",
+      "frequency": 1.618033988749895
+    },
+    {
+      "id": 6,
+      "name": "Hexadic Perfection",
+      "description": "The completion of the celestial harmony",
+      "keywords": [
+        "hexagon",
+        "perfection",
+        "celestial",
+        "harmony",
+        "completion"
+      ],
+      "animationParams": {
+        "rotation": 60.0,
+        "scale": 1.0,
+        "opacity": 0.9,
+        "color_hue": 150,
+        "frequency": 3.0,
+        "amplitude": 1.0,
+        "phase_offset": 0.5
+      },
+      "energySignature": "\u2b22",
+      "geometricPattern": "hexagon",
+      "color": "#673AB7",
+      "frequency": 3.0
+    },
+    {
+      "id": 7,
+      "name": "Septenary Mystery",
+      "description": "The sacred seven and the bridge between worlds",
+      "keywords": [
+        "seven",
+        "mystery",
+        "bridge",
+        "worlds",
+        "chakra"
+      ],
+      "animationParams": {
+        "rotation": 51.43,
+        "scale": 1.1,
+        "opacity": 0.92,
+        "color_hue": 180,
+        "frequency": 3.5,
+        "amplitude": 1.1,
+        "phase_offset": 0.5833
+      },
+      "energySignature": "\u2b1f",
+      "geometricPattern": "heptagon",
+      "color": "#9C27B0",
+      "frequency": 3.5
+    },
+    {
+      "id": 8,
+      "name": "Octadic Equilibrium",
+      "description": "The perfect balance and infinite regeneration",
+      "keywords": [
+        "eight",
+        "balance",
+        "infinite",
+        "regeneration",
+        "octave"
+      ],
+      "animationParams": {
+        "rotation": 45.0,
+        "scale": 1.2,
+        "opacity": 0.94,
+        "color_hue": 210,
+        "frequency": 4.0,
+        "amplitude": 1.2,
+        "phase_offset": 0.6667
+      },
+      "energySignature": "\u2b1f",
+      "geometricPattern": "octagon",
+      "color": "#E91E63",
+      "frequency": 4.0
+    },
+    {
+      "id": 9,
+      "name": "Ennadic Completion",
+      "description": "The threefold trinity and spiritual fulfillment",
+      "keywords": [
+        "nine",
+        "completion",
+        "trinity",
+        "spiritual",
+        "fulfillment"
+      ],
+      "animationParams": {
+        "rotation": 40.0,
+        "scale": 1.3,
+        "opacity": 0.96,
+        "color_hue": 240,
+        "frequency": 4.5,
+        "amplitude": 1.3,
+        "phase_offset": 0.75
+      },
+      "energySignature": "\u2b1f",
+      "geometricPattern": "enneagon",
+      "color": "#F44336",
+      "frequency": 4.5
+    },
+    {
+      "id": 10,
+      "name": "Decadic Manifestation",
+      "description": "The full manifestation in the material realm",
+      "keywords": [
+        "ten",
+        "manifestation",
+        "material",
+        "completion",
+        "sephiroth"
+      ],
+      "animationParams": {
+        "rotation": 36.0,
+        "scale": 1.4,
+        "opacity": 0.98,
+        "color_hue": 270,
+        "frequency": 5.0,
+        "amplitude": 1.4,
+        "phase_offset": 0.8333
+      },
+      "energySignature": "\u2b1f",
+      "geometricPattern": "decagon",
+      "color": "#FF5722",
+      "frequency": 5.0
+    },
+    {
+      "id": 11,
+      "name": "Transcendent Gateway",
+      "description": "The doorway beyond form and limitation",
+      "keywords": [
+        "eleven",
+        "transcendent",
+        "gateway",
+        "beyond",
+        "limitation"
+      ],
+      "animationParams": {
+        "rotation": 32.73,
+        "scale": 1.5,
+        "opacity": 0.99,
+        "color_hue": 300,
+        "frequency": 5.5,
+        "amplitude": 1.5,
+        "phase_offset": 0.9167
+      },
+      "energySignature": "\u2b1f",
+      "geometricPattern": "hendecagon",
+      "color": "#795548",
+      "frequency": 5.5
+    },
+    {
+      "id": 12,
+      "name": "Zodiacal Completion",
+      "description": "The fullness of cosmic cycles and eternal return",
+      "keywords": [
+        "twelve",
+        "zodiac",
+        "cosmic",
+        "cycles",
+        "eternal"
+      ],
+      "animationParams": {
+        "rotation": 30.0,
+        "scale": 1.618,
+        "opacity": 1.0,
+        "color_hue": 330,
+        "frequency": 6.0,
+        "amplitude": 1.618,
+        "phase_offset": 1.0
+      },
+      "energySignature": "\u2b1f",
+      "geometricPattern": "dodecagon",
+      "color": "#607D8B",
+      "frequency": 6.0
+    },
+    {
+      "id": 13,
+      "name": "The Eternal Beyond",
+      "description": "The infinite space beyond all cycles and forms",
+      "keywords": [
+        "thirteen",
+        "beyond",
+        "infinite",
+        "eternal",
+        "transcendent"
+      ],
+      "animationParams": {
+        "rotation": 0.0,
+        "scale": Infinity,
+        "opacity": 0.0,
+        "color_hue": 360,
+        "frequency": 0.0,
+        "amplitude": 0.0,
+        "phase_offset": 0.0
+      },
+      "energySignature": "\u221e",
+      "geometricPattern": "infinity",
+      "color": "#FFFFFF",
+      "frequency": 0.0
+    }
+  ],
+  "construct_mappings": {
+    "the void nexus": 0,
+    "void": 0,
+    "stillness": 0,
+    "potential": 0,
+    "beginning": 0,
+    "silence": 0,
+    "prima emanatio": 1,
+    "emanation": 1,
+    "consciousness": 1,
+    "awakening": 1,
+    "first": 1,
+    "light": 1,
+    "duality genesis": 2,
+    "duality": 2,
+    "polarity": 2,
+    "division": 2,
+    "yang": 2,
+    "yin": 2,
+    "trinity formation": 3,
+    "trinity": 3,
+    "stability": 3,
+    "triangle": 3,
+    "three": 3,
+    "foundation": 4,
+    "quaternary foundation": 4,
+    "quaternary": 4,
+    "square": 4,
+    "earth": 4,
+    "material": 10,
+    "pentadic harmony": 5,
+    "pentagon": 5,
+    "golden": 5,
+    "harmony": 6,
+    "proportion": 5,
+    "phi": 5,
+    "hexadic perfection": 6,
+    "hexagon": 6,
+    "perfection": 6,
+    "celestial": 6,
+    "completion": 9,
+    "septenary mystery": 7,
+    "seven": 7,
+    "mystery": 7,
+    "bridge": 7,
+    "worlds": 7,
+    "chakra": 7,
+    "octadic equilibrium": 8,
+    "eight": 8,
+    "balance": 8,
+    "infinite": 13,
+    "regeneration": 8,
+    "octave": 8,
+    "ennadic completion": 9,
+    "nine": 9,
+    "spiritual": 9,
+    "fulfillment": 9,
+    "decadic manifestation": 10,
+    "ten": 10,
+    "manifestation": 10,
+    "sephiroth": 10,
+    "transcendent gateway": 11,
+    "eleven": 11,
+    "transcendent": 13,
+    "gateway": 11,
+    "beyond": 13,
+    "limitation": 11,
+    "zodiacal completion": 12,
+    "twelve": 12,
+    "zodiac": 12,
+    "cosmic": 12,
+    "cycles": 12,
+    "eternal": 13,
+    "the eternal beyond": 13,
+    "thirteen": 13,
+    "emptiness": 0,
+    "null": 0,
+    "zero": 0,
+    "unity": 1,
+    "one": 1,
+    "monad": 1,
+    "source": 1,
+    "two": 2,
+    "binary": 2,
+    "triad": 3,
+    "four": 4,
+    "cross": 4,
+    "five": 5,
+    "quintessence": 5,
+    "six": 6,
+    "star": 6,
+    "seal": 6,
+    "heptagon": 7,
+    "septenary": 7,
+    "octagon": 8,
+    "infinity": 8,
+    "ouroboros": 8,
+    "enneagon": 9,
+    "decagon": 10,
+    "tree": 10,
+    "hendecagon": 11,
+    "portal": 11,
+    "dodecagon": 12
+  },
+  "animation_sequences": {
+    "full_spiral": [
+      {
+        "phase_id": 0,
+        "phase": "id=0 name='The Void Nexus' description='The primordial stillness before manifestation begins' keywords=['void', 'stillness', 'potential', 'beginning', 'silence'] animationParams={'rotation': 0.0, 'scale': 0.1, 'opacity': 0.2, 'color_hue': 0, 'frequency': 0.5, 'amplitude': 0.1, 'phase_offset': 0.0} energySignature='\u2205' geometricPattern='point' color='#000000' frequency=0.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 0.0,
+          "scale": 0.1,
+          "opacity": 0.2,
+          "color_hue": 0,
+          "frequency": 0.5,
+          "amplitude": 0.1,
+          "phase_offset": 0.0,
+          "phase_name": "The Void Nexus",
+          "energy_signature": "\u2205",
+          "geometric_pattern": "point",
+          "base_color": "#000000",
+          "breathing_scale": 1.0779106485697327,
+          "animated_rotation": 46.73565673828125,
+          "pulsing_opacity": 0.12092677480084256,
+          "animated_hue": 346.47131545493545
+        },
+        "transition_params": {
+          "from_phase": 0,
+          "to_phase": 1,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 0.0,
+              "to": 30.0,
+              "delta": 30.0
+            },
+            "scale": {
+              "from": 0.1,
+              "to": 0.3,
+              "delta": 0.19999999999999998
+            },
+            "opacity": {
+              "from": 0.2,
+              "to": 0.4,
+              "delta": 0.2
+            },
+            "color_hue": {
+              "from": 0,
+              "to": 15,
+              "delta": 15
+            },
+            "frequency": {
+              "from": 0.5,
+              "to": 1.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.1,
+              "to": 0.3,
+              "delta": 0.19999999999999998
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 1,
+        "phase": "id=1 name='Prima Emanatio' description='The first stirring of consciousness from the void' keywords=['emanation', 'consciousness', 'awakening', 'first', 'light'] animationParams={'rotation': 30.0, 'scale': 0.3, 'opacity': 0.4, 'color_hue': 15, 'frequency': 1.0, 'amplitude': 0.3, 'phase_offset': 0.0833} energySignature='\u2609' geometricPattern='circle' color='#FFD700' frequency=1.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 30.0,
+          "scale": 0.3,
+          "opacity": 0.4,
+          "color_hue": 15,
+          "frequency": 1.0,
+          "amplitude": 0.3,
+          "phase_offset": 0.0833,
+          "phase_name": "Prima Emanatio",
+          "energy_signature": "\u2609",
+          "geometric_pattern": "circle",
+          "base_color": "#FFD700",
+          "breathing_scale": 0.902316452290862,
+          "animated_rotation": 93.47154235839844,
+          "pulsing_opacity": 0.3534455506034285,
+          "animated_hue": 26.686490792603976
+        },
+        "transition_params": {
+          "from_phase": 1,
+          "to_phase": 2,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 30.0,
+              "to": 60.0,
+              "delta": 30.0
+            },
+            "scale": {
+              "from": 0.3,
+              "to": 0.5,
+              "delta": 0.2
+            },
+            "opacity": {
+              "from": 0.4,
+              "to": 0.6,
+              "delta": 0.19999999999999996
+            },
+            "color_hue": {
+              "from": 15,
+              "to": 30,
+              "delta": 15
+            },
+            "frequency": {
+              "from": 1.0,
+              "to": 1.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.3,
+              "to": 0.5,
+              "delta": 0.2
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 2,
+        "phase": "id=2 name='Duality Genesis' description='The birth of polarity and the sacred division' keywords=['duality', 'polarity', 'division', 'yang', 'yin'] animationParams={'rotation': 60.0, 'scale': 0.5, 'opacity': 0.6, 'color_hue': 30, 'frequency': 1.5, 'amplitude': 0.5, 'phase_offset': 0.1667} energySignature='\u262f' geometricPattern='vesica_piscis' color='#FF6B35' frequency=1.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 60.0,
+          "scale": 0.5,
+          "opacity": 0.6,
+          "color_hue": 30,
+          "frequency": 1.5,
+          "amplitude": 0.5,
+          "phase_offset": 0.1667,
+          "phase_name": "Duality Genesis",
+          "energy_signature": "\u262f",
+          "geometric_pattern": "vesica_piscis",
+          "base_color": "#FF6B35",
+          "breathing_scale": 1.0445682315563238,
+          "animated_rotation": 140.20758819580078,
+          "pulsing_opacity": 0.5757530121980968,
+          "animated_hue": 33.433801201130294
+        },
+        "transition_params": {
+          "from_phase": 2,
+          "to_phase": 3,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 60.0,
+              "to": 120.0,
+              "delta": 60.0
+            },
+            "scale": {
+              "from": 0.5,
+              "to": 0.7,
+              "delta": 0.19999999999999996
+            },
+            "opacity": {
+              "from": 0.6,
+              "to": 0.7,
+              "delta": 0.09999999999999998
+            },
+            "color_hue": {
+              "from": 30,
+              "to": 60,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 1.5,
+              "to": 2.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.5,
+              "to": 0.7,
+              "delta": 0.19999999999999996
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 3,
+        "phase": "id=3 name='Trinity Formation' description='The stabilization through three-fold manifestation' keywords=['trinity', 'stability', 'triangle', 'three', 'foundation'] animationParams={'rotation': 120.0, 'scale': 0.7, 'opacity': 0.7, 'color_hue': 60, 'frequency': 2.0, 'amplitude': 0.7, 'phase_offset': 0.25} energySignature='\u25b3' geometricPattern='triangle' color='#FFC107' frequency=2.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 120.0,
+          "scale": 0.7,
+          "opacity": 0.7,
+          "color_hue": 60,
+          "frequency": 2.0,
+          "amplitude": 0.7,
+          "phase_offset": 0.25,
+          "phase_name": "Trinity Formation",
+          "energy_signature": "\u25b3",
+          "geometric_pattern": "triangle",
+          "base_color": "#FFC107",
+          "breathing_scale": 1.0418003107020972,
+          "animated_rotation": 186.94380950927734,
+          "pulsing_opacity": 0.4536747370225561,
+          "animated_hue": 45.34735076339889
+        },
+        "transition_params": {
+          "from_phase": 3,
+          "to_phase": 4,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 120.0,
+              "to": 90.0,
+              "delta": -30.0
+            },
+            "scale": {
+              "from": 0.7,
+              "to": 0.8,
+              "delta": 0.10000000000000009
+            },
+            "opacity": {
+              "from": 0.7,
+              "to": 0.8,
+              "delta": 0.10000000000000009
+            },
+            "color_hue": {
+              "from": 60,
+              "to": 90,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 2.0,
+              "to": 2.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.7,
+              "to": 0.8,
+              "delta": 0.10000000000000009
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 4,
+        "phase": "id=4 name='Quaternary Foundation' description='The establishment of the four-fold material base' keywords=['quaternary', 'foundation', 'square', 'earth', 'material'] animationParams={'rotation': 90.0, 'scale': 0.8, 'opacity': 0.8, 'color_hue': 90, 'frequency': 2.5, 'amplitude': 0.8, 'phase_offset': 0.3333} energySignature='\u25a1' geometricPattern='square' color='#4CAF50' frequency=2.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 90.0,
+          "scale": 0.8,
+          "opacity": 0.8,
+          "color_hue": 90,
+          "frequency": 2.5,
+          "amplitude": 0.8,
+          "phase_offset": 0.3333,
+          "phase_name": "Quaternary Foundation",
+          "energy_signature": "\u25a1",
+          "geometric_pattern": "square",
+          "base_color": "#4CAF50",
+          "breathing_scale": 0.9030199092849384,
+          "animated_rotation": 233.68019104003906,
+          "pulsing_opacity": 0.564309621047513,
+          "animated_hue": 99.22287822870909
+        },
+        "transition_params": {
+          "from_phase": 4,
+          "to_phase": 5,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 90.0,
+              "to": 72.0,
+              "delta": -18.0
+            },
+            "scale": {
+              "from": 0.8,
+              "to": 0.8090169943749475,
+              "delta": 0.009016994374947407
+            },
+            "opacity": {
+              "from": 0.8,
+              "to": 0.85,
+              "delta": 0.04999999999999993
+            },
+            "color_hue": {
+              "from": 90,
+              "to": 120,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 2.5,
+              "to": 1.618033988749895,
+              "delta": -0.8819660112501051
+            },
+            "amplitude": {
+              "from": 0.8,
+              "to": 0.8090169943749475,
+              "delta": 0.009016994374947407
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 5,
+        "phase": "id=5 name='Pentadic Harmony' description='The golden mean and perfect proportion emerge' keywords=['pentagon', 'golden', 'harmony', 'proportion', 'phi'] animationParams={'rotation': 72.0, 'scale': 0.8090169943749475, 'opacity': 0.85, 'color_hue': 120, 'frequency': 1.618033988749895, 'amplitude': 0.8090169943749475, 'phase_offset': 0.4167} energySignature='\u2b1f' geometricPattern='pentagon' color='#2196F3' frequency=1.618033988749895",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 72.0,
+          "scale": 0.8090169943749475,
+          "opacity": 0.85,
+          "color_hue": 120,
+          "frequency": 1.618033988749895,
+          "amplitude": 0.8090169943749475,
+          "phase_offset": 0.4167,
+          "phase_name": "Pentadic Harmony",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "pentagon",
+          "base_color": "#2196F3",
+          "breathing_scale": 1.0999720160456186,
+          "animated_rotation": 304.0279350280762,
+          "pulsing_opacity": 0.6880407493048888,
+          "animated_hue": 130.48039661545826
+        },
+        "transition_params": {
+          "from_phase": 5,
+          "to_phase": 6,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 72.0,
+              "to": 60.0,
+              "delta": -12.0
+            },
+            "scale": {
+              "from": 0.8090169943749475,
+              "to": 1.0,
+              "delta": 0.19098300562505255
+            },
+            "opacity": {
+              "from": 0.85,
+              "to": 0.9,
+              "delta": 0.050000000000000044
+            },
+            "color_hue": {
+              "from": 120,
+              "to": 150,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 1.618033988749895,
+              "to": 3.0,
+              "delta": 1.381966011250105
+            },
+            "amplitude": {
+              "from": 0.8090169943749475,
+              "to": 1.0,
+              "delta": 0.19098300562505255
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 6,
+        "phase": "id=6 name='Hexadic Perfection' description='The completion of the celestial harmony' keywords=['hexagon', 'perfection', 'celestial', 'harmony', 'completion'] animationParams={'rotation': 60.0, 'scale': 1.0, 'opacity': 0.9, 'color_hue': 150, 'frequency': 3.0, 'amplitude': 1.0, 'phase_offset': 0.5} energySignature='\u2b22' geometricPattern='hexagon' color='#673AB7' frequency=3.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 60.0,
+          "scale": 1.0,
+          "opacity": 0.9,
+          "color_hue": 150,
+          "frequency": 3.0,
+          "amplitude": 1.0,
+          "phase_offset": 0.5,
+          "phase_name": "Hexadic Perfection",
+          "energy_signature": "\u2b22",
+          "geometric_pattern": "hexagon",
+          "base_color": "#673AB7",
+          "breathing_scale": 1.079807395598619,
+          "animated_rotation": 280.41736602783203,
+          "pulsing_opacity": 0.8931193381187271,
+          "animated_hue": 156.68670736170642
+        },
+        "transition_params": {
+          "from_phase": 6,
+          "to_phase": 7,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 60.0,
+              "to": 51.43,
+              "delta": -8.57
+            },
+            "scale": {
+              "from": 1.0,
+              "to": 1.1,
+              "delta": 0.10000000000000009
+            },
+            "opacity": {
+              "from": 0.9,
+              "to": 0.92,
+              "delta": 0.020000000000000018
+            },
+            "color_hue": {
+              "from": 150,
+              "to": 180,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 3.0,
+              "to": 3.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.0,
+              "to": 1.1,
+              "delta": 0.10000000000000009
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 7,
+        "phase": "id=7 name='Septenary Mystery' description='The sacred seven and the bridge between worlds' keywords=['seven', 'mystery', 'bridge', 'worlds', 'chakra'] animationParams={'rotation': 51.43, 'scale': 1.1, 'opacity': 0.92, 'color_hue': 180, 'frequency': 3.5, 'amplitude': 1.1, 'phase_offset': 0.5833} energySignature='\u2b1f' geometricPattern='heptagon' color='#9C27B0' frequency=3.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 51.43,
+          "scale": 1.1,
+          "opacity": 0.92,
+          "color_hue": 180,
+          "frequency": 3.5,
+          "amplitude": 1.1,
+          "phase_offset": 0.5833,
+          "phase_name": "Septenary Mystery",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "heptagon",
+          "base_color": "#9C27B0",
+          "breathing_scale": 0.9969031933182103,
+          "animated_rotation": 327.1542282104492,
+          "pulsing_opacity": 0.7473907826564011,
+          "animated_hue": 165.00179870385043
+        },
+        "transition_params": {
+          "from_phase": 7,
+          "to_phase": 8,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 51.43,
+              "to": 45.0,
+              "delta": -6.43
+            },
+            "scale": {
+              "from": 1.1,
+              "to": 1.2,
+              "delta": 0.09999999999999987
+            },
+            "opacity": {
+              "from": 0.92,
+              "to": 0.94,
+              "delta": 0.019999999999999907
+            },
+            "color_hue": {
+              "from": 180,
+              "to": 210,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 3.5,
+              "to": 4.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.1,
+              "to": 1.2,
+              "delta": 0.09999999999999987
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 8,
+        "phase": "id=8 name='Octadic Equilibrium' description='The perfect balance and infinite regeneration' keywords=['eight', 'balance', 'infinite', 'regeneration', 'octave'] animationParams={'rotation': 45.0, 'scale': 1.2, 'opacity': 0.94, 'color_hue': 210, 'frequency': 4.0, 'amplitude': 1.2, 'phase_offset': 0.6667} energySignature='\u2b1f' geometricPattern='octagon' color='#E91E63' frequency=4.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 45.0,
+          "scale": 1.2,
+          "opacity": 0.94,
+          "color_hue": 210,
+          "frequency": 4.0,
+          "amplitude": 1.2,
+          "phase_offset": 0.6667,
+          "phase_name": "Octadic Equilibrium",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "octagon",
+          "base_color": "#E91E63",
+          "breathing_scale": 0.924077460685705,
+          "animated_rotation": 13.891326904296875,
+          "pulsing_opacity": 0.5662090078967987,
+          "animated_hue": 216.2675253868281
+        },
+        "transition_params": {
+          "from_phase": 8,
+          "to_phase": 9,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 45.0,
+              "to": 40.0,
+              "delta": -5.0
+            },
+            "scale": {
+              "from": 1.2,
+              "to": 1.3,
+              "delta": 0.10000000000000009
+            },
+            "opacity": {
+              "from": 0.94,
+              "to": 0.96,
+              "delta": 0.020000000000000018
+            },
+            "color_hue": {
+              "from": 210,
+              "to": 240,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 4.0,
+              "to": 4.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.2,
+              "to": 1.3,
+              "delta": 0.10000000000000009
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 9,
+        "phase": "id=9 name='Ennadic Completion' description='The threefold trinity and spiritual fulfillment' keywords=['nine', 'completion', 'trinity', 'spiritual', 'fulfillment'] animationParams={'rotation': 40.0, 'scale': 1.3, 'opacity': 0.96, 'color_hue': 240, 'frequency': 4.5, 'amplitude': 1.3, 'phase_offset': 0.75} energySignature='\u2b1f' geometricPattern='enneagon' color='#F44336' frequency=4.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 40.0,
+          "scale": 1.3,
+          "opacity": 0.96,
+          "color_hue": 240,
+          "frequency": 4.5,
+          "amplitude": 1.3,
+          "phase_offset": 0.75,
+          "phase_name": "Ennadic Completion",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "enneagon",
+          "base_color": "#F44336",
+          "breathing_scale": 1.0983043310157783,
+          "animated_rotation": 60.62846374511719,
+          "pulsing_opacity": 0.8372214216354491,
+          "animated_hue": 249.58490887948122
+        },
+        "transition_params": {
+          "from_phase": 9,
+          "to_phase": 10,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 40.0,
+              "to": 36.0,
+              "delta": -4.0
+            },
+            "scale": {
+              "from": 1.3,
+              "to": 1.4,
+              "delta": 0.09999999999999987
+            },
+            "opacity": {
+              "from": 0.96,
+              "to": 0.98,
+              "delta": 0.020000000000000018
+            },
+            "color_hue": {
+              "from": 240,
+              "to": 270,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 4.5,
+              "to": 5.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.3,
+              "to": 1.4,
+              "delta": 0.09999999999999987
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 10,
+        "phase": "id=10 name='Decadic Manifestation' description='The full manifestation in the material realm' keywords=['ten', 'manifestation', 'material', 'completion', 'sephiroth'] animationParams={'rotation': 36.0, 'scale': 1.4, 'opacity': 0.98, 'color_hue': 270, 'frequency': 5.0, 'amplitude': 1.4, 'phase_offset': 0.8333} energySignature='\u2b1f' geometricPattern='decagon' color='#FF5722' frequency=5.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 36.0,
+          "scale": 1.4,
+          "opacity": 0.98,
+          "color_hue": 270,
+          "frequency": 5.0,
+          "amplitude": 1.4,
+          "phase_offset": 0.8333,
+          "phase_name": "Decadic Manifestation",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "decagon",
+          "base_color": "#FF5722",
+          "breathing_scale": 0.9526462999588505,
+          "animated_rotation": 107.36573791503906,
+          "pulsing_opacity": 0.947494984894587,
+          "animated_hue": 255.45396732066786
+        },
+        "transition_params": {
+          "from_phase": 10,
+          "to_phase": 11,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 36.0,
+              "to": 32.73,
+              "delta": -3.270000000000003
+            },
+            "scale": {
+              "from": 1.4,
+              "to": 1.5,
+              "delta": 0.10000000000000009
+            },
+            "opacity": {
+              "from": 0.98,
+              "to": 0.99,
+              "delta": 0.010000000000000009
+            },
+            "color_hue": {
+              "from": 270,
+              "to": 300,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 5.0,
+              "to": 5.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.4,
+              "to": 1.5,
+              "delta": 0.10000000000000009
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 11,
+        "phase": "id=11 name='Transcendent Gateway' description='The doorway beyond form and limitation' keywords=['eleven', 'transcendent', 'gateway', 'beyond', 'limitation'] animationParams={'rotation': 32.73, 'scale': 1.5, 'opacity': 0.99, 'color_hue': 300, 'frequency': 5.5, 'amplitude': 1.5, 'phase_offset': 0.9167} energySignature='\u2b1f' geometricPattern='hendecagon' color='#795548' frequency=5.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 32.73,
+          "scale": 1.5,
+          "opacity": 0.99,
+          "color_hue": 300,
+          "frequency": 5.5,
+          "amplitude": 1.5,
+          "phase_offset": 0.9167,
+          "phase_name": "Transcendent Gateway",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "hendecagon",
+          "base_color": "#795548",
+          "breathing_scale": 0.9610823398032758,
+          "animated_rotation": 154.1033935546875,
+          "pulsing_opacity": 0.650035920777408,
+          "animated_hue": 302.9781108418136
+        },
+        "transition_params": {
+          "from_phase": 11,
+          "to_phase": 12,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 32.73,
+              "to": 30.0,
+              "delta": -2.729999999999997
+            },
+            "scale": {
+              "from": 1.5,
+              "to": 1.618,
+              "delta": 0.1180000000000001
+            },
+            "opacity": {
+              "from": 0.99,
+              "to": 1.0,
+              "delta": 0.010000000000000009
+            },
+            "color_hue": {
+              "from": 300,
+              "to": 330,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 5.5,
+              "to": 6.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.5,
+              "to": 1.618,
+              "delta": 0.1180000000000001
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 12,
+        "phase": "id=12 name='Zodiacal Completion' description='The fullness of cosmic cycles and eternal return' keywords=['twelve', 'zodiac', 'cosmic', 'cycles', 'eternal'] animationParams={'rotation': 30.0, 'scale': 1.618, 'opacity': 1.0, 'color_hue': 330, 'frequency': 6.0, 'amplitude': 1.618, 'phase_offset': 1.0} energySignature='\u2b1f' geometricPattern='dodecagon' color='#607D8B' frequency=6.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 30.0,
+          "scale": 1.618,
+          "opacity": 1.0,
+          "color_hue": 330,
+          "frequency": 6.0,
+          "amplitude": 1.618,
+          "phase_offset": 1.0,
+          "phase_name": "Zodiacal Completion",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "dodecagon",
+          "base_color": "#607D8B",
+          "breathing_scale": 1.0961601022360263,
+          "animated_rotation": 200.84104919433594,
+          "pulsing_opacity": 0.6944349693574268,
+          "animated_hue": 341.9739618583553
+        },
+        "transition_params": {
+          "from_phase": 12,
+          "to_phase": 13,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 30.0,
+              "to": 0.0,
+              "delta": -30.0
+            },
+            "opacity": {
+              "from": 1.0,
+              "to": 0.0,
+              "delta": -1.0
+            },
+            "color_hue": {
+              "from": 330,
+              "to": 360,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 6.0,
+              "to": 0.0,
+              "delta": -6.0
+            },
+            "amplitude": {
+              "from": 1.618,
+              "to": 0.0,
+              "delta": -1.618
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 13,
+        "phase": "id=13 name='The Eternal Beyond' description='The infinite space beyond all cycles and forms' keywords=['thirteen', 'beyond', 'infinite', 'eternal', 'transcendent'] animationParams={'rotation': 0.0, 'scale': inf, 'opacity': 0.0, 'color_hue': 360, 'frequency': 0.0, 'amplitude': 0.0, 'phase_offset': 0.0} energySignature='\u221e' geometricPattern='infinity' color='#FFFFFF' frequency=0.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 0.0,
+          "scale": Infinity,
+          "opacity": 0.0,
+          "color_hue": 360,
+          "frequency": 0.0,
+          "amplitude": 0.0,
+          "phase_offset": 0.0,
+          "phase_name": "The Eternal Beyond",
+          "energy_signature": "\u221e",
+          "geometric_pattern": "infinity",
+          "base_color": "#FFFFFF",
+          "breathing_scale": 1.0,
+          "animated_rotation": 0.0,
+          "pulsing_opacity": 0.0,
+          "animated_hue": 0.0
+        },
+        "transition_params": {
+          "from_phase": 13,
+          "to_phase": 0,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 0.0,
+              "to": 0.0,
+              "delta": 0.0
+            },
+            "opacity": {
+              "from": 0.0,
+              "to": 0.2,
+              "delta": 0.2
+            },
+            "color_hue": {
+              "from": 360,
+              "to": 0,
+              "delta": -360
+            },
+            "frequency": {
+              "from": 0.0,
+              "to": 0.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.0,
+              "to": 0.1,
+              "delta": 0.1
+            }
+          }
+        }
+      }
+    ],
+    "cosmic_trinity": [
+      {
+        "phase_id": 0,
+        "phase": "id=0 name='The Void Nexus' description='The primordial stillness before manifestation begins' keywords=['void', 'stillness', 'potential', 'beginning', 'silence'] animationParams={'rotation': 0.0, 'scale': 0.1, 'opacity': 0.2, 'color_hue': 0, 'frequency': 0.5, 'amplitude': 0.1, 'phase_offset': 0.0} energySignature='\u2205' geometricPattern='point' color='#000000' frequency=0.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 0.0,
+          "scale": 0.1,
+          "opacity": 0.2,
+          "color_hue": 0,
+          "frequency": 0.5,
+          "amplitude": 0.1,
+          "phase_offset": 0.0,
+          "phase_name": "The Void Nexus",
+          "energy_signature": "\u2205",
+          "geometric_pattern": "point",
+          "base_color": "#000000",
+          "breathing_scale": 1.0779027264296437,
+          "animated_rotation": 46.736921310424805,
+          "pulsing_opacity": 0.12092461259400725,
+          "animated_hue": 346.4709061461265
+        },
+        "transition_params": {
+          "from_phase": 0,
+          "to_phase": 1,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 0.0,
+              "to": 30.0,
+              "delta": 30.0
+            },
+            "scale": {
+              "from": 0.1,
+              "to": 0.3,
+              "delta": 0.19999999999999998
+            },
+            "opacity": {
+              "from": 0.2,
+              "to": 0.4,
+              "delta": 0.2
+            },
+            "color_hue": {
+              "from": 0,
+              "to": 15,
+              "delta": 15
+            },
+            "frequency": {
+              "from": 0.5,
+              "to": 1.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.1,
+              "to": 0.3,
+              "delta": 0.19999999999999998
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 1,
+        "phase": "id=1 name='Prima Emanatio' description='The first stirring of consciousness from the void' keywords=['emanation', 'consciousness', 'awakening', 'first', 'light'] animationParams={'rotation': 30.0, 'scale': 0.3, 'opacity': 0.4, 'color_hue': 15, 'frequency': 1.0, 'amplitude': 0.3, 'phase_offset': 0.0833} energySignature='\u2609' geometricPattern='circle' color='#FFD700' frequency=1.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 30.0,
+          "scale": 0.3,
+          "opacity": 0.4,
+          "color_hue": 15,
+          "frequency": 1.0,
+          "amplitude": 0.3,
+          "phase_offset": 0.0833,
+          "phase_name": "Prima Emanatio",
+          "energy_signature": "\u2609",
+          "geometric_pattern": "circle",
+          "base_color": "#FFD700",
+          "breathing_scale": 0.9023110931978312,
+          "animated_rotation": 93.47404861450195,
+          "pulsing_opacity": 0.3534091258013985,
+          "animated_hue": 26.685312545313067
+        },
+        "transition_params": {
+          "from_phase": 1,
+          "to_phase": 2,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 30.0,
+              "to": 60.0,
+              "delta": 30.0
+            },
+            "scale": {
+              "from": 0.3,
+              "to": 0.5,
+              "delta": 0.2
+            },
+            "opacity": {
+              "from": 0.4,
+              "to": 0.6,
+              "delta": 0.19999999999999996
+            },
+            "color_hue": {
+              "from": 15,
+              "to": 30,
+              "delta": 15
+            },
+            "frequency": {
+              "from": 1.0,
+              "to": 1.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.3,
+              "to": 0.5,
+              "delta": 0.2
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 2,
+        "phase": "id=2 name='Duality Genesis' description='The birth of polarity and the sacred division' keywords=['duality', 'polarity', 'division', 'yang', 'yin'] animationParams={'rotation': 60.0, 'scale': 0.5, 'opacity': 0.6, 'color_hue': 30, 'frequency': 1.5, 'amplitude': 0.5, 'phase_offset': 0.1667} energySignature='\u262f' geometricPattern='vesica_piscis' color='#FF6B35' frequency=1.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 60.0,
+          "scale": 0.5,
+          "opacity": 0.6,
+          "color_hue": 30,
+          "frequency": 1.5,
+          "amplitude": 0.5,
+          "phase_offset": 0.1667,
+          "phase_name": "Duality Genesis",
+          "energy_signature": "\u262f",
+          "geometric_pattern": "vesica_piscis",
+          "base_color": "#FF6B35",
+          "breathing_scale": 1.044601523586047,
+          "animated_rotation": 140.2113037109375,
+          "pulsing_opacity": 0.5758067881473141,
+          "animated_hue": 33.43651656462538
+        },
+        "transition_params": {
+          "from_phase": 2,
+          "to_phase": 3,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 60.0,
+              "to": 120.0,
+              "delta": 60.0
+            },
+            "scale": {
+              "from": 0.5,
+              "to": 0.7,
+              "delta": 0.19999999999999996
+            },
+            "opacity": {
+              "from": 0.6,
+              "to": 0.7,
+              "delta": 0.09999999999999998
+            },
+            "color_hue": {
+              "from": 30,
+              "to": 60,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 1.5,
+              "to": 2.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.5,
+              "to": 0.7,
+              "delta": 0.19999999999999996
+            }
+          }
+        }
+      }
+    ],
+    "material_foundation": [
+      {
+        "phase_id": 3,
+        "phase": "id=3 name='Trinity Formation' description='The stabilization through three-fold manifestation' keywords=['trinity', 'stability', 'triangle', 'three', 'foundation'] animationParams={'rotation': 120.0, 'scale': 0.7, 'opacity': 0.7, 'color_hue': 60, 'frequency': 2.0, 'amplitude': 0.7, 'phase_offset': 0.25} energySignature='\u25b3' geometricPattern='triangle' color='#FFC107' frequency=2.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 120.0,
+          "scale": 0.7,
+          "opacity": 0.7,
+          "color_hue": 60,
+          "frequency": 2.0,
+          "amplitude": 0.7,
+          "phase_offset": 0.25,
+          "phase_name": "Trinity Formation",
+          "energy_signature": "\u25b3",
+          "geometric_pattern": "triangle",
+          "base_color": "#FFC107",
+          "breathing_scale": 1.0417555147473498,
+          "animated_rotation": 186.94874572753906,
+          "pulsing_opacity": 0.4537645992225925,
+          "animated_hue": 45.346560026451016
+        },
+        "transition_params": {
+          "from_phase": 3,
+          "to_phase": 4,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 120.0,
+              "to": 90.0,
+              "delta": -30.0
+            },
+            "scale": {
+              "from": 0.7,
+              "to": 0.8,
+              "delta": 0.10000000000000009
+            },
+            "opacity": {
+              "from": 0.7,
+              "to": 0.8,
+              "delta": 0.10000000000000009
+            },
+            "color_hue": {
+              "from": 60,
+              "to": 90,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 2.0,
+              "to": 2.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.7,
+              "to": 0.8,
+              "delta": 0.10000000000000009
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 4,
+        "phase": "id=4 name='Quaternary Foundation' description='The establishment of the four-fold material base' keywords=['quaternary', 'foundation', 'square', 'earth', 'material'] animationParams={'rotation': 90.0, 'scale': 0.8, 'opacity': 0.8, 'color_hue': 90, 'frequency': 2.5, 'amplitude': 0.8, 'phase_offset': 0.3333} energySignature='\u25a1' geometricPattern='square' color='#4CAF50' frequency=2.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 90.0,
+          "scale": 0.8,
+          "opacity": 0.8,
+          "color_hue": 90,
+          "frequency": 2.5,
+          "amplitude": 0.8,
+          "phase_offset": 0.3333,
+          "phase_name": "Quaternary Foundation",
+          "energy_signature": "\u25a1",
+          "geometric_pattern": "square",
+          "base_color": "#4CAF50",
+          "breathing_scale": 0.903035116816452,
+          "animated_rotation": 233.68641662597656,
+          "pulsing_opacity": 0.5641341088102388,
+          "animated_hue": 99.21919435603601
+        },
+        "transition_params": {
+          "from_phase": 4,
+          "to_phase": 5,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 90.0,
+              "to": 72.0,
+              "delta": -18.0
+            },
+            "scale": {
+              "from": 0.8,
+              "to": 0.8090169943749475,
+              "delta": 0.009016994374947407
+            },
+            "opacity": {
+              "from": 0.8,
+              "to": 0.85,
+              "delta": 0.04999999999999993
+            },
+            "color_hue": {
+              "from": 90,
+              "to": 120,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 2.5,
+              "to": 1.618033988749895,
+              "delta": -0.8819660112501051
+            },
+            "amplitude": {
+              "from": 0.8,
+              "to": 0.8090169943749475,
+              "delta": 0.009016994374947407
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 5,
+        "phase": "id=5 name='Pentadic Harmony' description='The golden mean and perfect proportion emerge' keywords=['pentagon', 'golden', 'harmony', 'proportion', 'phi'] animationParams={'rotation': 72.0, 'scale': 0.8090169943749475, 'opacity': 0.85, 'color_hue': 120, 'frequency': 1.618033988749895, 'amplitude': 0.8090169943749475, 'phase_offset': 0.4167} energySignature='\u2b1f' geometricPattern='pentagon' color='#2196F3' frequency=1.618033988749895",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 72.0,
+          "scale": 0.8090169943749475,
+          "opacity": 0.85,
+          "color_hue": 120,
+          "frequency": 1.618033988749895,
+          "amplitude": 0.8090169943749475,
+          "phase_offset": 0.4167,
+          "phase_name": "Pentadic Harmony",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "pentagon",
+          "base_color": "#2196F3",
+          "breathing_scale": 1.099972950001598,
+          "animated_rotation": 304.0319137573242,
+          "pulsing_opacity": 0.6879055242114253,
+          "animated_hue": 130.48253279426305
+        },
+        "transition_params": {
+          "from_phase": 5,
+          "to_phase": 6,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 72.0,
+              "to": 60.0,
+              "delta": -12.0
+            },
+            "scale": {
+              "from": 0.8090169943749475,
+              "to": 1.0,
+              "delta": 0.19098300562505255
+            },
+            "opacity": {
+              "from": 0.85,
+              "to": 0.9,
+              "delta": 0.050000000000000044
+            },
+            "color_hue": {
+              "from": 120,
+              "to": 150,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 1.618033988749895,
+              "to": 3.0,
+              "delta": 1.381966011250105
+            },
+            "amplitude": {
+              "from": 0.8090169943749475,
+              "to": 1.0,
+              "delta": 0.19098300562505255
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 6,
+        "phase": "id=6 name='Hexadic Perfection' description='The completion of the celestial harmony' keywords=['hexagon', 'perfection', 'celestial', 'harmony', 'completion'] animationParams={'rotation': 60.0, 'scale': 1.0, 'opacity': 0.9, 'color_hue': 150, 'frequency': 3.0, 'amplitude': 1.0, 'phase_offset': 0.5} energySignature='\u2b22' geometricPattern='hexagon' color='#673AB7' frequency=3.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 60.0,
+          "scale": 1.0,
+          "opacity": 0.9,
+          "color_hue": 150,
+          "frequency": 3.0,
+          "amplitude": 1.0,
+          "phase_offset": 0.5,
+          "phase_name": "Hexadic Perfection",
+          "energy_signature": "\u2b22",
+          "geometric_pattern": "hexagon",
+          "base_color": "#673AB7",
+          "breathing_scale": 1.079851736599722,
+          "animated_rotation": 280.4247283935547,
+          "pulsing_opacity": 0.8930465694190572,
+          "animated_hue": 156.69164968232494
+        },
+        "transition_params": {
+          "from_phase": 6,
+          "to_phase": 7,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 60.0,
+              "to": 51.43,
+              "delta": -8.57
+            },
+            "scale": {
+              "from": 1.0,
+              "to": 1.1,
+              "delta": 0.10000000000000009
+            },
+            "opacity": {
+              "from": 0.9,
+              "to": 0.92,
+              "delta": 0.020000000000000018
+            },
+            "color_hue": {
+              "from": 150,
+              "to": 180,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 3.0,
+              "to": 3.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.0,
+              "to": 1.1,
+              "delta": 0.10000000000000009
+            }
+          }
+        }
+      }
+    ],
+    "spiritual_ascent": [
+      {
+        "phase_id": 7,
+        "phase": "id=7 name='Septenary Mystery' description='The sacred seven and the bridge between worlds' keywords=['seven', 'mystery', 'bridge', 'worlds', 'chakra'] animationParams={'rotation': 51.43, 'scale': 1.1, 'opacity': 0.92, 'color_hue': 180, 'frequency': 3.5, 'amplitude': 1.1, 'phase_offset': 0.5833} energySignature='\u2b1f' geometricPattern='heptagon' color='#9C27B0' frequency=3.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 51.43,
+          "scale": 1.1,
+          "opacity": 0.92,
+          "color_hue": 180,
+          "frequency": 3.5,
+          "amplitude": 1.1,
+          "phase_offset": 0.5833,
+          "phase_name": "Septenary Mystery",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "heptagon",
+          "base_color": "#9C27B0",
+          "breathing_scale": 0.996817404947557,
+          "animated_rotation": 327.1628112792969,
+          "pulsing_opacity": 0.7477060168252359,
+          "animated_hue": 165.00189977232426
+        },
+        "transition_params": {
+          "from_phase": 7,
+          "to_phase": 8,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 51.43,
+              "to": 45.0,
+              "delta": -6.43
+            },
+            "scale": {
+              "from": 1.1,
+              "to": 1.2,
+              "delta": 0.09999999999999987
+            },
+            "opacity": {
+              "from": 0.92,
+              "to": 0.94,
+              "delta": 0.019999999999999907
+            },
+            "color_hue": {
+              "from": 180,
+              "to": 210,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 3.5,
+              "to": 4.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.1,
+              "to": 1.2,
+              "delta": 0.09999999999999987
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 8,
+        "phase": "id=8 name='Octadic Equilibrium' description='The perfect balance and infinite regeneration' keywords=['eight', 'balance', 'infinite', 'regeneration', 'octave'] animationParams={'rotation': 45.0, 'scale': 1.2, 'opacity': 0.94, 'color_hue': 210, 'frequency': 4.0, 'amplitude': 1.2, 'phase_offset': 0.6667} energySignature='\u2b1f' geometricPattern='octagon' color='#E91E63' frequency=4.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 45.0,
+          "scale": 1.2,
+          "opacity": 0.94,
+          "color_hue": 210,
+          "frequency": 4.0,
+          "amplitude": 1.2,
+          "phase_offset": 0.6667,
+          "phase_name": "Octadic Equilibrium",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "octagon",
+          "base_color": "#E91E63",
+          "breathing_scale": 0.9241403086224512,
+          "animated_rotation": 13.900970458984375,
+          "pulsing_opacity": 0.5661538884515113,
+          "animated_hue": 216.2609484159067
+        },
+        "transition_params": {
+          "from_phase": 8,
+          "to_phase": 9,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 45.0,
+              "to": 40.0,
+              "delta": -5.0
+            },
+            "scale": {
+              "from": 1.2,
+              "to": 1.3,
+              "delta": 0.10000000000000009
+            },
+            "opacity": {
+              "from": 0.94,
+              "to": 0.96,
+              "delta": 0.020000000000000018
+            },
+            "color_hue": {
+              "from": 210,
+              "to": 240,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 4.0,
+              "to": 4.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.2,
+              "to": 1.3,
+              "delta": 0.10000000000000009
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 9,
+        "phase": "id=9 name='Ennadic Completion' description='The threefold trinity and spiritual fulfillment' keywords=['nine', 'completion', 'trinity', 'spiritual', 'fulfillment'] animationParams={'rotation': 40.0, 'scale': 1.3, 'opacity': 0.96, 'color_hue': 240, 'frequency': 4.5, 'amplitude': 1.3, 'phase_offset': 0.75} energySignature='\u2b1f' geometricPattern='enneagon' color='#F44336' frequency=4.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 40.0,
+          "scale": 1.3,
+          "opacity": 0.96,
+          "color_hue": 240,
+          "frequency": 4.5,
+          "amplitude": 1.3,
+          "phase_offset": 0.75,
+          "phase_name": "Ennadic Completion",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "enneagon",
+          "base_color": "#F44336",
+          "breathing_scale": 1.0983242438496985,
+          "animated_rotation": 60.63935852050781,
+          "pulsing_opacity": 0.8368311703702603,
+          "animated_hue": 249.59119054950256
+        },
+        "transition_params": {
+          "from_phase": 9,
+          "to_phase": 10,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 40.0,
+              "to": 36.0,
+              "delta": -4.0
+            },
+            "scale": {
+              "from": 1.3,
+              "to": 1.4,
+              "delta": 0.09999999999999987
+            },
+            "opacity": {
+              "from": 0.96,
+              "to": 0.98,
+              "delta": 0.020000000000000018
+            },
+            "color_hue": {
+              "from": 240,
+              "to": 270,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 4.5,
+              "to": 5.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.3,
+              "to": 1.4,
+              "delta": 0.09999999999999987
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 10,
+        "phase": "id=10 name='Decadic Manifestation' description='The full manifestation in the material realm' keywords=['ten', 'manifestation', 'material', 'completion', 'sephiroth'] animationParams={'rotation': 36.0, 'scale': 1.4, 'opacity': 0.98, 'color_hue': 270, 'frequency': 5.0, 'amplitude': 1.4, 'phase_offset': 0.8333} energySignature='\u2b1f' geometricPattern='decagon' color='#FF5722' frequency=5.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 36.0,
+          "scale": 1.4,
+          "opacity": 0.98,
+          "color_hue": 270,
+          "frequency": 5.0,
+          "amplitude": 1.4,
+          "phase_offset": 0.8333,
+          "phase_name": "Decadic Manifestation",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "decagon",
+          "base_color": "#FF5722",
+          "breathing_scale": 0.9525393225709023,
+          "animated_rotation": 107.37789916992188,
+          "pulsing_opacity": 0.9477571783762407,
+          "animated_hue": 255.45619485800793
+        },
+        "transition_params": {
+          "from_phase": 10,
+          "to_phase": 11,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 36.0,
+              "to": 32.73,
+              "delta": -3.270000000000003
+            },
+            "scale": {
+              "from": 1.4,
+              "to": 1.5,
+              "delta": 0.10000000000000009
+            },
+            "opacity": {
+              "from": 0.98,
+              "to": 0.99,
+              "delta": 0.010000000000000009
+            },
+            "color_hue": {
+              "from": 270,
+              "to": 300,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 5.0,
+              "to": 5.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.4,
+              "to": 1.5,
+              "delta": 0.10000000000000009
+            }
+          }
+        }
+      }
+    ],
+    "transcendent_gateway": [
+      {
+        "phase_id": 11,
+        "phase": "id=11 name='Transcendent Gateway' description='The doorway beyond form and limitation' keywords=['eleven', 'transcendent', 'gateway', 'beyond', 'limitation'] animationParams={'rotation': 32.73, 'scale': 1.5, 'opacity': 0.99, 'color_hue': 300, 'frequency': 5.5, 'amplitude': 1.5, 'phase_offset': 0.9167} energySignature='\u2b1f' geometricPattern='hendecagon' color='#795548' frequency=5.5",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 32.73,
+          "scale": 1.5,
+          "opacity": 0.99,
+          "color_hue": 300,
+          "frequency": 5.5,
+          "amplitude": 1.5,
+          "phase_offset": 0.9167,
+          "phase_name": "Transcendent Gateway",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "hendecagon",
+          "base_color": "#795548",
+          "breathing_scale": 0.9612220643455844,
+          "animated_rotation": 154.11856079101562,
+          "pulsing_opacity": 0.6504551515287673,
+          "animated_hue": 302.9669638184936
+        },
+        "transition_params": {
+          "from_phase": 11,
+          "to_phase": 12,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 32.73,
+              "to": 30.0,
+              "delta": -2.729999999999997
+            },
+            "scale": {
+              "from": 1.5,
+              "to": 1.618,
+              "delta": 0.1180000000000001
+            },
+            "opacity": {
+              "from": 0.99,
+              "to": 1.0,
+              "delta": 0.010000000000000009
+            },
+            "color_hue": {
+              "from": 300,
+              "to": 330,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 5.5,
+              "to": 6.0,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 1.5,
+              "to": 1.618,
+              "delta": 0.1180000000000001
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 12,
+        "phase": "id=12 name='Zodiacal Completion' description='The fullness of cosmic cycles and eternal return' keywords=['twelve', 'zodiac', 'cosmic', 'cycles', 'eternal'] animationParams={'rotation': 30.0, 'scale': 1.618, 'opacity': 1.0, 'color_hue': 330, 'frequency': 6.0, 'amplitude': 1.618, 'phase_offset': 1.0} energySignature='\u2b1f' geometricPattern='dodecagon' color='#607D8B' frequency=6.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 30.0,
+          "scale": 1.618,
+          "opacity": 1.0,
+          "color_hue": 330,
+          "frequency": 6.0,
+          "amplitude": 1.618,
+          "phase_offset": 1.0,
+          "phase_name": "Zodiacal Completion",
+          "energy_signature": "\u2b1f",
+          "geometric_pattern": "dodecagon",
+          "base_color": "#607D8B",
+          "breathing_scale": 1.0961146382160283,
+          "animated_rotation": 200.85755920410156,
+          "pulsing_opacity": 0.6938743741192589,
+          "animated_hue": 341.9814192980204
+        },
+        "transition_params": {
+          "from_phase": 12,
+          "to_phase": 13,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 30.0,
+              "to": 0.0,
+              "delta": -30.0
+            },
+            "opacity": {
+              "from": 1.0,
+              "to": 0.0,
+              "delta": -1.0
+            },
+            "color_hue": {
+              "from": 330,
+              "to": 360,
+              "delta": 30
+            },
+            "frequency": {
+              "from": 6.0,
+              "to": 0.0,
+              "delta": -6.0
+            },
+            "amplitude": {
+              "from": 1.618,
+              "to": 0.0,
+              "delta": -1.618
+            }
+          }
+        }
+      },
+      {
+        "phase_id": 13,
+        "phase": "id=13 name='The Eternal Beyond' description='The infinite space beyond all cycles and forms' keywords=['thirteen', 'beyond', 'infinite', 'eternal', 'transcendent'] animationParams={'rotation': 0.0, 'scale': inf, 'opacity': 0.0, 'color_hue': 360, 'frequency': 0.0, 'amplitude': 0.0, 'phase_offset': 0.0} energySignature='\u221e' geometricPattern='infinity' color='#FFFFFF' frequency=0.0",
+        "duration": 24.0,
+        "animation_params": {
+          "rotation": 0.0,
+          "scale": Infinity,
+          "opacity": 0.0,
+          "color_hue": 360,
+          "frequency": 0.0,
+          "amplitude": 0.0,
+          "phase_offset": 0.0,
+          "phase_name": "The Eternal Beyond",
+          "energy_signature": "\u221e",
+          "geometric_pattern": "infinity",
+          "base_color": "#FFFFFF",
+          "breathing_scale": 1.0,
+          "animated_rotation": 0.0,
+          "pulsing_opacity": 0.0,
+          "animated_hue": 0.0
+        },
+        "transition_params": {
+          "from_phase": 13,
+          "to_phase": 0,
+          "duration": 24.0,
+          "easing": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+          "interpolations": {
+            "rotation": {
+              "from": 0.0,
+              "to": 0.0,
+              "delta": 0.0
+            },
+            "opacity": {
+              "from": 0.0,
+              "to": 0.2,
+              "delta": 0.2
+            },
+            "color_hue": {
+              "from": 360,
+              "to": 0,
+              "delta": -360
+            },
+            "frequency": {
+              "from": 0.0,
+              "to": 0.5,
+              "delta": 0.5
+            },
+            "amplitude": {
+              "from": 0.0,
+              "to": 0.1,
+              "delta": 0.1
+            }
+          }
+        }
+      }
+    ]
+  },
+  "sacred_constants": {
+    "phi": 1.618033988749895,
+    "pi_sacred": 6.283185307179586,
+    "spiral_constant": 0.30901699437494745
+  }
+}
