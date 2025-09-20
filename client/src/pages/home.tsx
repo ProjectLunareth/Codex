@@ -93,6 +93,37 @@ export default function Home() {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
 
+  // Python Tools handlers
+  const handleGrimoireViewer = () => {
+    console.log("Opening Grimoire Viewer...");
+    // TODO: Implement Python terminal interface for browsing codex entries
+    alert("Grimoire Viewer: Interactive terminal interface for browsing codex entries will be implemented here.");
+  };
+
+  const handleLunarethSync = () => {
+    console.log("Opening Lunareth Synchronization...");
+    // TODO: Implement 13+1 phase mapping with sacred mathematics
+    alert("Lunareth Synchronization: 13+1 phase mapping with sacred mathematics will be implemented here.");
+  };
+
+  const handleSacredGeometry = () => {
+    console.log("Opening Sacred Geometry...");
+    // TODO: Implement Scribe's Geometricum - mathematical patterns, L-systems, fractals
+    alert("Sacred Geometry: Scribe's Geometricum for mathematical patterns, L-systems, and fractals will be implemented here.");
+  };
+
+  const handleMysticalToolsClient = () => {
+    console.log("Opening Mystical Tools Client...");
+    // TODO: Implement Python access to Oracle, Sigil Generator, Sonic Echo
+    alert("Mystical Tools Client: Python access to Oracle, Sigil Generator, and Sonic Echo will be implemented here.");
+  };
+
+  const handleIntegrationBridge = () => {
+    console.log("Opening Integration Bridge...");
+    // TODO: Implement bidirectional data exchange between React and Python
+    alert("Integration Bridge: Bidirectional data exchange between React and Python will be implemented here.");
+  };
+
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       <Sidebar
@@ -108,6 +139,11 @@ export default function Home() {
         onGraphClick={openGraph}
         onCollectionsClick={openCollections}
         onToolsClick={openTools}
+        onGrimoireViewerClick={handleGrimoireViewer}
+        onLunarethSyncClick={handleLunarethSync}
+        onSacredGeometryClick={handleSacredGeometry}
+        onMysticalToolsClientClick={handleMysticalToolsClient}
+        onIntegrationBridgeClick={handleIntegrationBridge}
         isCollapsed={isSidebarCollapsed}
         onToggleCollapse={toggleSidebar}
         entryCounts={{

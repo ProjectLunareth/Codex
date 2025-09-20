@@ -1,4 +1,6 @@
-import { Search, X, Eye, CircleDot, Lightbulb, Bookmark, Menu, ChevronLeft, BookOpen, Sparkles, Volume2, Network, Share2 } from "lucide-react";
+import { useState } from "react";
+import { Search, X, Eye, CircleDot, Lightbulb, Bookmark, Menu, ChevronLeft, BookOpen, Sparkles, Volume2, Network, Share2, Terminal, Compass, Shapes, Code2, Atom, Moon, Settings, ChevronDown, ChevronUp } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +19,11 @@ interface SidebarProps {
   onGraphClick: () => void;
   onCollectionsClick: () => void;
   onToolsClick: () => void;
+  onGrimoireViewerClick: () => void;
+  onLunarethSyncClick: () => void;
+  onSacredGeometryClick: () => void;
+  onMysticalToolsClientClick: () => void;
+  onIntegrationBridgeClick: () => void;
   isCollapsed: boolean;
   onToggleCollapse: () => void;
   entryCounts: Record<string, number>;
@@ -35,10 +42,17 @@ export default function Sidebar({
   onGraphClick,
   onCollectionsClick,
   onToolsClick,
+  onGrimoireViewerClick,
+  onLunarethSyncClick,
+  onSacredGeometryClick,
+  onMysticalToolsClientClick,
+  onIntegrationBridgeClick,
   isCollapsed,
   onToggleCollapse,
   entryCounts,
 }: SidebarProps) {
+  const [isPythonToolsOpen, setIsPythonToolsOpen] = useState(false);
+
   const handleFilterToggle = (filter: string) => {
     if (selectedFilters.includes(filter)) {
       onFiltersChange(selectedFilters.filter(f => f !== filter));
@@ -280,6 +294,71 @@ export default function Sidebar({
           <Sparkles className="h-4 w-4" />
           {!isCollapsed && <span className="ml-2">Mystical Tools Atelier</span>}
         </Button>
+
+        {/* Python Tools Section */}
+        {!isCollapsed && (
+          <Collapsible open={isPythonToolsOpen} onOpenChange={setIsPythonToolsOpen}>
+            <CollapsibleTrigger asChild>
+              <Button
+                variant="ghost"
+                className="w-full justify-between mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border mt-2"
+                data-testid="button-toggle-python-tools"
+              >
+                <div className="flex items-center">
+                  <Code2 className="h-4 w-4 mr-2" />
+                  <span>Python Integration</span>
+                </div>
+                {isPythonToolsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent className="space-y-2 mt-2 ml-4">
+              <Button
+                onClick={onGrimoireViewerClick}
+                className={`mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border w-full`}
+                data-testid="button-grimoire-viewer"
+              >
+                <Terminal className="h-4 w-4" />
+                <span className="ml-2">Grimoire Viewer</span>
+              </Button>
+              
+              <Button
+                onClick={onLunarethSyncClick}
+                className={`mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border w-full`}
+                data-testid="button-lunareth-sync"
+              >
+                <Moon className="h-4 w-4" />
+                <span className="ml-2">Lunareth Synchronization</span>
+              </Button>
+              
+              <Button
+                onClick={onSacredGeometryClick}
+                className={`mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border w-full`}
+                data-testid="button-sacred-geometry"
+              >
+                <Compass className="h-4 w-4" />
+                <span className="ml-2">Sacred Geometry</span>
+              </Button>
+              
+              <Button
+                onClick={onMysticalToolsClientClick}
+                className={`mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border w-full`}
+                data-testid="button-mystical-tools-client"
+              >
+                <Settings className="h-4 w-4" />
+                <span className="ml-2">Mystical Tools Client</span>
+              </Button>
+              
+              <Button
+                onClick={onIntegrationBridgeClick}
+                className={`mystical-border font-cinzel font-semibold text-primary hover:bg-accent/10 bg-transparent border-border w-full`}
+                data-testid="button-integration-bridge"
+              >
+                <Network className="h-4 w-4" />
+                <span className="ml-2">Integration Bridge</span>
+              </Button>
+            </CollapsibleContent>
+          </Collapsible>
+        )}
       </div>
     </aside>
   );

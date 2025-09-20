@@ -59,12 +59,12 @@ export default function OracleModal({ isOpen, onClose }: OracleModalProps) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4 overflow-hidden"
       onClick={handleBackdropClick}
       data-testid="modal-oracle"
     >
-      <div className="mystical-border mystical-glow rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-        <header className="sticky top-0 mystical-border border-l-0 border-r-0 border-t-0 p-6 flex items-center justify-between bg-card/95 backdrop-blur-sm">
+      <div className="mystical-border mystical-glow rounded-lg max-w-2xl w-full max-h-[80vh] flex flex-col overflow-hidden">
+        <header className="flex-shrink-0 mystical-border border-l-0 border-r-0 border-t-0 p-6 flex items-center justify-between bg-card/95 backdrop-blur-sm">
           <h2 className="font-cinzel text-xl font-bold text-primary">
             <Eye className="inline h-5 w-5 mr-2" />
             Oracle of Hidden Knowing
@@ -80,7 +80,7 @@ export default function OracleModal({ isOpen, onClose }: OracleModalProps) {
           </Button>
         </header>
 
-        <div className="p-6">
+        <div className="flex-1 overflow-y-auto p-6" style={{maxHeight: 'calc(80vh - 100px)'}}>
           <div className="mb-6">
             <Label htmlFor="oracle-query" className="block text-sm font-medium text-foreground mb-2">
               Pose your question to the Oracle:

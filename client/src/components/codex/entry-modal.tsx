@@ -80,10 +80,10 @@ export default function EntryModal({ entry, isOpen, onClose }: EntryModalProps) 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent 
-        className="mystical-border mystical-glow max-w-4xl max-h-[90vh] overflow-y-auto"
+        className="mystical-border mystical-glow max-w-4xl max-h-[90vh] overflow-hidden p-0 flex flex-col"
         data-testid="modal-entry"
       >
-        <DialogHeader className="sticky top-0 mystical-border border-l-0 border-r-0 border-t-0 pb-6 flex items-center justify-between bg-card/95 backdrop-blur-sm">
+        <DialogHeader className="flex-shrink-0 mystical-border border-l-0 border-r-0 border-t-0 pb-6 p-6 flex items-center justify-between bg-card/95 backdrop-blur-sm">
           <div className="flex items-center space-x-4 flex-1">
             <Badge className="category-badge" data-testid="text-modal-category">
               {getCategoryDisplayName(entry.category)}
@@ -102,7 +102,8 @@ export default function EntryModal({ entry, isOpen, onClose }: EntryModalProps) 
           </div>
         </DialogHeader>
 
-        <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto px-6 pb-6" style={{maxHeight: 'calc(90vh - 120px)'}}>
+          <div className="space-y-6">
           <DialogTitle className="font-cinzel text-2xl font-bold text-primary" data-testid="text-modal-title">
             {entryTitle}
           </DialogTitle>
@@ -255,6 +256,7 @@ export default function EntryModal({ entry, isOpen, onClose }: EntryModalProps) 
               <EntrySharing entryId={entry.id} entryTitle={entryTitle} />
             </TabsContent>
           </Tabs>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

@@ -173,9 +173,9 @@ export default function CollectionManager({ isOpen, onClose }: CollectionManager
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-background/95 backdrop-blur-sm z-50">
+    <div className="fixed inset-0 bg-background/95 backdrop-blur-sm z-50 overflow-hidden">
       <div className="container mx-auto p-6 h-full">
-        <Card className="h-full">
+        <Card className="h-full flex flex-col">
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2 font-cinzel text-2xl">
@@ -187,7 +187,7 @@ export default function CollectionManager({ isOpen, onClose }: CollectionManager
               </Button>
             </div>
           </CardHeader>
-          <CardContent className="h-[calc(100%-5rem)]">
+          <CardContent className="flex-1 overflow-hidden">
             <Tabs defaultValue="browse" className="h-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="browse" data-testid="tab-browse-collections">
@@ -199,7 +199,7 @@ export default function CollectionManager({ isOpen, onClose }: CollectionManager
               </TabsList>
 
               {/* Browse Collections Tab */}
-              <TabsContent value="browse" className="h-[calc(100%-3rem)]">
+              <TabsContent value="browse" className="flex-1 overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
                   {/* Collections List */}
                   <div className="space-y-4">
@@ -216,7 +216,7 @@ export default function CollectionManager({ isOpen, onClose }: CollectionManager
                         </CardContent>
                       </Card>
                     ) : (
-                      <ScrollArea className="h-[calc(100%-2rem)]">
+                      <ScrollArea className="flex-1">
                         <div className="space-y-3">
                           {collections.map((collection) => (
                             <Card 
@@ -356,7 +356,7 @@ export default function CollectionManager({ isOpen, onClose }: CollectionManager
               </TabsContent>
 
               {/* Create Collection Tab */}
-              <TabsContent value="create" className="h-[calc(100%-3rem)]">
+              <TabsContent value="create" className="flex-1 overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
                   {/* Collection Form */}
                   <div>
@@ -454,7 +454,7 @@ export default function CollectionManager({ isOpen, onClose }: CollectionManager
                         <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full"></div>
                       </div>
                     ) : (
-                      <ScrollArea className="h-[calc(100%-3rem)]">
+                      <ScrollArea className="flex-1">
                         <div className="space-y-2 pr-4">
                           {filteredEntries.map((entry) => (
                             <div 

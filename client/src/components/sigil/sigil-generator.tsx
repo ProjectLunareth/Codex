@@ -120,15 +120,16 @@ export default function SigilGenerator({ isOpen, onClose }: SigilGeneratorProps)
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden p-0 flex flex-col">
+        <DialogHeader className="flex-shrink-0 p-6 pb-2">
           <DialogTitle className="font-cinzel text-2xl text-primary flex items-center">
             <Wand2 className="h-6 w-6 mr-2" />
             ✦ Mystical Sigil Generator ✦
           </DialogTitle>
         </DialogHeader>
 
-        {!generatedSigil ? (
+        <div className="flex-1 overflow-y-auto px-6 pb-6" style={{maxHeight: 'calc(90vh - 120px)'}}>
+          {!generatedSigil ? (
           <div className="space-y-6">
             <div className="text-center text-muted-foreground">
               <p className="italic">Channel your intention into sacred geometry</p>
@@ -358,7 +359,8 @@ export default function SigilGenerator({ isOpen, onClose }: SigilGeneratorProps)
               </Button>
             </div>
           </div>
-        )}
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );

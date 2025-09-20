@@ -153,15 +153,16 @@ export default function SonicEchoGenerator({ isOpen, onClose }: SonicEchoGenerat
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent className="max-w-5xl max-h-[90vh] overflow-hidden p-0 flex flex-col">
+        <DialogHeader className="flex-shrink-0 p-6 pb-2">
           <DialogTitle className="font-cinzel text-2xl text-primary flex items-center">
             <Volume2 className="h-6 w-6 mr-2" />
             ⟡ Sonic Echo Generator ⟡
           </DialogTitle>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="flex-1 overflow-y-auto px-6 pb-6" style={{maxHeight: 'calc(90vh - 120px)'}}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Generation Form */}
           <div className="space-y-6">
             {!generatedEcho ? (
@@ -427,6 +428,7 @@ export default function SonicEchoGenerator({ isOpen, onClose }: SonicEchoGenerat
               )}
             </ScrollArea>
           </div>
+        </div>
         </div>
 
         {/* Hidden audio element */}

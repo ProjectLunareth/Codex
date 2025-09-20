@@ -125,9 +125,9 @@ export default function ToolRunner({ isOpen, onClose, initialTool = "scrying" }:
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-background/95 backdrop-blur-sm z-50">
+    <div className="fixed inset-0 bg-background/95 backdrop-blur-sm z-50 overflow-hidden">
       <div className="container mx-auto p-6 h-full max-w-6xl">
-        <Card className="h-full">
+        <Card className="h-full flex flex-col">
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2 font-cinzel text-2xl">
@@ -150,13 +150,13 @@ export default function ToolRunner({ isOpen, onClose, initialTool = "scrying" }:
               </div>
             </div>
           </CardHeader>
-          <CardContent className="h-[calc(100%-5rem)]">
+          <CardContent className="flex-1 overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
               
               {/* Tools Selection */}
               <div className="space-y-4">
                 <h3 className="font-cinzel text-lg font-semibold">Choose Your Mystical Tool</h3>
-                <ScrollArea className="h-[calc(100%-2rem)]">
+                <ScrollArea className="flex-1">
                   <div className="space-y-2 pr-4">
                     {mysticalTools.map((tool) => {
                       const IconComponent = tool.icon;

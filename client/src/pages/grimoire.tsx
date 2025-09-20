@@ -199,12 +199,13 @@ export default function GrimoirePage() {
                 New Entry
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-              <DialogHeader>
+            <DialogContent className="max-w-2xl max-h-[80vh] flex flex-col">
+              <DialogHeader className="flex-shrink-0">
                 <DialogTitle className="font-cinzel text-xl text-primary">Create New Grimoire Entry</DialogTitle>
               </DialogHeader>
-              <Form {...createForm}>
-                <form onSubmit={createForm.handleSubmit(onCreateSubmit)} className="space-y-4">
+              <div className="flex-1 overflow-y-auto pr-2">
+                <Form {...createForm}>
+                  <form onSubmit={createForm.handleSubmit(onCreateSubmit)} className="space-y-4">
                   <FormField
                     control={createForm.control}
                     name="title"
@@ -298,6 +299,7 @@ export default function GrimoirePage() {
                   </div>
                 </form>
               </Form>
+              </div>
             </DialogContent>
           </Dialog>
         </div>
@@ -380,8 +382,8 @@ export default function GrimoirePage() {
       {/* View Entry Modal */}
       {selectedEntry && (
         <Dialog open={!!selectedEntry} onOpenChange={() => setSelectedEntry(null)}>
-          <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
-            <DialogHeader>
+          <DialogContent className="max-w-3xl max-h-[80vh] flex flex-col">
+            <DialogHeader className="flex-shrink-0">
               <div className="flex items-center justify-between">
                 <div>
                   <DialogTitle className="font-cinzel text-xl text-primary">
@@ -411,24 +413,26 @@ export default function GrimoirePage() {
                 </div>
               </div>
             </DialogHeader>
-            <div className="space-y-4">
-              <div className="prose prose-sm max-w-none">
-                <div className="whitespace-pre-wrap text-foreground">
-                  {selectedEntry.content}
-                </div>
-              </div>
-              {selectedEntry.tags && selectedEntry.tags.length > 0 && (
-                <div>
-                  <h4 className="text-sm font-semibold mb-2">Tags</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedEntry.tags.map((tag, index) => (
-                      <Badge key={index} variant="outline">
-                        {tag}
-                      </Badge>
-                    ))}
+            <div className="flex-1 overflow-y-auto pr-2">
+              <div className="space-y-4">
+                <div className="prose prose-sm max-w-none">
+                  <div className="whitespace-pre-wrap text-foreground">
+                    {selectedEntry.content}
                   </div>
                 </div>
-              )}
+                {selectedEntry.tags && selectedEntry.tags.length > 0 && (
+                  <div>
+                    <h4 className="text-sm font-semibold mb-2">Tags</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedEntry.tags.map((tag, index) => (
+                        <Badge key={index} variant="outline">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </DialogContent>
         </Dialog>
@@ -436,13 +440,14 @@ export default function GrimoirePage() {
 
       {/* Edit Entry Modal */}
       <Dialog open={isEditModalOpen} onOpenChange={closeEditModal}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-          <DialogHeader>
+        <DialogContent className="max-w-2xl max-h-[80vh] flex flex-col">
+          <DialogHeader className="flex-shrink-0">
             <DialogTitle className="font-cinzel text-xl text-primary">Edit Grimoire Entry</DialogTitle>
           </DialogHeader>
-          <Form {...editForm}>
-            <form onSubmit={editForm.handleSubmit(onEditSubmit)} className="space-y-4">
-              <FormField
+          <div className="flex-1 overflow-y-auto pr-2">
+            <Form {...editForm}>
+              <form onSubmit={editForm.handleSubmit(onEditSubmit)} className="space-y-4">
+                <FormField
                 control={editForm.control}
                 name="title"
                 render={({ field }) => (
@@ -532,6 +537,7 @@ export default function GrimoirePage() {
               </div>
             </form>
           </Form>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
