@@ -1,0 +1,17 @@
+[project]
+name = "repl-nix-workspace"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "fuzzywuzzy>=0.18.0",
+    "matplotlib>=3.10.6",
+    "numpy>=2.3.3",
+    "pillow>=11.3.0",
+    "pydantic>=2.11.9",
+    "python-levenshtein>=0.27.1",
+    "pyyaml>=6.0.2",
+    "requests>=2.32.5",
+    "scipy>=1.16.2",
+    "websocket-client>=1.8.0",
+]

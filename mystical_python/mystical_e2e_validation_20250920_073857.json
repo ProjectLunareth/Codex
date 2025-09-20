@@ -1,0 +1,28 @@
+{
+  "status": "PARTIAL",
+  "timestamp": "2025-09-20T07:38:57.258133",
+  "api_testing_enabled": false,
+  "tests": {
+    "passed": 2,
+    "total": 3,
+    "success_rate": 66.66666666666666,
+    "results": {
+      "Lunareth Sync": {
+        "success": false,
+        "message": "Lunareth synchronization failed: 'LunarethSynchronizer' object has no attribute 'PHI'",
+        "duration": 0.5653355121612549
+      },
+      "Sacred Geometry": {
+        "success": true,
+        "message": "Sacred geometry successful: Golden Spiral, Vesica Piscis, Sacred Mandala",
+        "duration": 0.5750687122344971
+      },
+      "Configuration Mgmt": {
+        "success": true,
+        "message": "Configuration management successful: Session tracking works",
+        "duration": 0.03364872932434082
+      }
+    }
+  },
+  "overall_success": false
+}

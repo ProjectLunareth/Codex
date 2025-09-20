@@ -639,6 +639,192 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ===== PYTHON BRIDGE ENDPOINTS =====
+  
+  // Export collection for Python processing
+  app.get("/api/bridge/export/collection/:id", async (req, res) => {
+    try {
+      const collectionId = req.params.id;
+      const collection = await storage.getCollection(collectionId);
+      
+      if (!collection) {
+        return res.status(404).json({ message: "Collection not found" });
+      }
+      
+      // Get all entries in the collection
+      const entries = await Promise.all(
+        collection.entryIds.map(id => storage.getCodexEntry(id))
+      );
+      
+      const validEntries = entries.filter(entry => entry !== undefined);
+      
+      // Python-optimized export format
+      const exportData = {
+        collection_info: {
+          id: collection.id,
+          title: collection.title,
+          notes: collection.notes,
+          entry_count: validEntries.length,
+          exported_at: new Date().toISOString(),
+          export_source: 'mystical_bridge'
+        },
+        entries: validEntries.map(entry => ({
+          ...entry,
+          python_metadata: {
+            word_count: entry.fullText.split(' ').length,
+            char_count: entry.fullText.length,
+            summary_length: entry.summary.length,
+            has_bookmark: entry.bookmark !== null,
+            bookmark_notes: entry.bookmark?.personalNotes || null
+          }
+        })),
+        metadata: {
+          total_size: validEntries.reduce((sum, entry) => sum + entry.size, 0),
+          categories: validEntries.reduce((acc, entry) => {
+            acc[entry.category] = (acc[entry.category] || 0) + 1;
+            return acc;
+          }, {} as Record<string, number>),
+          key_terms: [...new Set(validEntries.flatMap(entry => entry.keyTerms || []))],
+          date_range: {
+            earliest: Math.min(...validEntries.map(e => new Date(e.processedDate).getTime())),
+            latest: Math.max(...validEntries.map(e => new Date(e.processedDate).getTime()))
+          }
+        }
+      };
+      
+      res.json(exportData);
+    } catch (error) {
+      console.error("Error exporting collection for Python:", error);
+      res.status(500).json({ message: "Failed to export collection" });
+    }
+  });
+  
+  // Export entries for analysis
+  app.post("/api/bridge/export/analysis", async (req, res) => {
+    try {
+      const { entryIds, includeFullText = true, includeBookmarks = true } = req.body;
+      
+      let entries;
+      if (entryIds && Array.isArray(entryIds)) {
+        entries = await Promise.all(
+          entryIds.map((id: string) => storage.getCodexEntry(id))
+        );
+        entries = entries.filter(entry => entry !== undefined);
+      } else {
+        entries = await storage.getCodexEntries();
+      }
+      
+      const exportData = {
+        analysis_metadata: {
+          total_entries: entries.length,
+          exported_at: new Date().toISOString(),
+          include_full_text: includeFullText,
+          include_bookmarks: includeBookmarks,
+          export_purpose: 'python_analysis'
+        },
+        entries: entries.map(entry => {
+          const entryData = {
+            id: entry.id,
+            filename: entry.filename,
+            category: entry.category,
+            subcategory: entry.subcategory,
+            size: entry.size,
+            processed_date: entry.processedDate,
+            summary: entry.summary,
+            key_chunks: includeFullText ? entry.keyChunks : entry.keyChunks.slice(0, 3),
+            key_terms: entry.keyTerms
+          } as any;
+          
+          if (includeFullText) {
+            entryData.full_text = entry.fullText;
+          }
+          
+          if (includeBookmarks && entry.bookmark) {
+            entryData.bookmark = {
+              is_bookmarked: entry.bookmark.isBookmarked,
+              personal_notes: entry.bookmark.personalNotes,
+              created_at: entry.bookmark.createdAt,
+              updated_at: entry.bookmark.updatedAt
+            };
+          }
+          
+          return entryData;
+        }),
+        text_corpus: includeFullText ? entries.map(entry => ({
+          id: entry.id,
+          text: entry.fullText,
+          metadata: {
+            category: entry.category,
+            size: entry.size
+          }
+        })) : [],
+        category_distribution: entries.reduce((acc, entry) => {
+          acc[entry.category] = (acc[entry.category] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>),
+        key_term_frequency: entries.reduce((acc, entry) => {
+          if (entry.keyTerms) {
+            entry.keyTerms.forEach(term => {
+              acc[term] = (acc[term] || 0) + 1;
+            });
+          }
+          return acc;
+        }, {} as Record<string, number>),
+        processing_hints: {
+          recommended_tools: ['nltk', 'spacy', 'sklearn', 'gensim'],
+          text_encoding: 'utf-8',
+          language: 'english',
+          domain: 'mystical_esoteric'
+        }
+      };
+      
+      res.json(exportData);
+    } catch (error) {
+      console.error("Error exporting for analysis:", error);
+      res.status(500).json({ message: "Failed to export for analysis" });
+    }
+  });
+
+  // Bridge status and health check
+  app.get("/api/bridge/status", async (req, res) => {
+    try {
+      const allEntries = await storage.getCodexEntries();
+      const allCollections = await storage.getCollections();
+      const allBookmarks = await storage.getBookmarkedEntries();
+      
+      res.json({
+        bridge_health: {
+          status: 'healthy',
+          api_version: '1.0',
+          timestamp: new Date().toISOString(),
+          uptime: process.uptime()
+        },
+        data_summary: {
+          total_entries: allEntries.length,
+          total_collections: allCollections.length,
+          bookmarked_entries: allBookmarks.length,
+          categories: [...new Set(allEntries.map(e => e.category))],
+          last_processed: allEntries.length > 0 ? 
+            Math.max(...allEntries.map(e => new Date(e.processedDate).getTime())) : null
+        },
+        capabilities: {
+          export_collections: true,
+          export_analysis: true,
+          import_annotations: true,
+          sync_python_data: true,
+          real_time_sync: false,
+          batch_processing: true
+        }
+      });
+    } catch (error) {
+      console.error("Error getting bridge status:", error);
+      res.status(500).json({ 
+        bridge_health: { status: 'error', error: error instanceof Error ? error.message : 'Unknown error' },
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

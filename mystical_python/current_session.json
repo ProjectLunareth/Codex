@@ -1,0 +1,23 @@
+{
+  "session_id": "session_1758353937",
+  "started_at": "2025-09-20 07:38:57.254149",
+  "last_activity": "2025-09-20 07:38:57.255536",
+  "user_preferences": {},
+  "current_phase": 0,
+  "active_collection": null,
+  "active_entry": null,
+  "tools_used": [
+    "e2e_test"
+  ],
+  "oracle_context_stack": [],
+  "sigil_intentions": [],
+  "sonic_frequencies": [],
+  "react_connected": false,
+  "python_connected": false,
+  "last_sync": null,
+  "pending_sync": [],
+  "total_api_calls": 1,
+  "total_errors": 0,
+  "data_exports": 0,
+  "geometry_renders": 0
+}
